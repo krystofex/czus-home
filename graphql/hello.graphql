@@ -1,0 +1,12 @@
+query Krystof {
+  hello
+}
+
+query SensorData {
+  sensor {
+    macAddress
+    temperature
+    pressure
+    humidity
+  }
+}

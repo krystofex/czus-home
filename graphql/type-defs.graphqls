@@ -1,0 +1,11 @@
+type Query {
+  hello: String!
+  sensor: Sensor
+}
+
+type Sensor {
+  macAddress: String!
+  temperature: Float!
+  pressure: Float!
+  humidity: Float!
+}

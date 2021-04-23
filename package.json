@@ -1,0 +1,41 @@
+{
+  "name": "czushomets",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "codegen": "graphql-let",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.14",
+    "@graphql-tools/load-files": "^6.3.2",
+    "@nexus/schema": "^0.20.1",
+    "apollo-link-ws": "^1.0.20",
+    "apollo-server-micro": "^2.21.0",
+    "chart.js": "^2.9.4",
+    "graphql": "^15.5.0",
+    "graphql-subscriptions": "^1.2.1",
+    "graphql-tools": "^7.0.4",
+    "mongodb": "^3.6.5",
+    "next": "10.0.7",
+    "react": "17.0.1",
+    "react-chartjs-2": "^2.11.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/plugin-helpers": "^1.18.4",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.3",
+    "@types/node": "^14.14.31",
+    "@types/react": "^17.0.2",
+    "autoprefixer": "^10.2.4",
+    "graphql-let": "^0.17.1",
+    "postcss": "^8.2.6",
+    "tailwindcss": "^2.0.3",
+    "typescript": "^4.1.5"
+  }
+}
