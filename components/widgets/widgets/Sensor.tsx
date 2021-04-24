@@ -6,7 +6,13 @@ import { useSensorDataQuery } from "../../../graphql/hello.graphql";
 const Main = (props) => {
   return (
     <>
-      <div className={TailwindPosition(props.position)}>{props.children}</div>
+      <div
+        className={`${TailwindPosition(
+          props.position
+        )} bg-light-widget dark:bg-dark-widget`}
+      >
+        {props.children}
+      </div>
     </>
   );
 };

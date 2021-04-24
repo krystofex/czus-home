@@ -6,7 +6,7 @@ const Main = (props) => {
     <div
       className={`${TailwindPosition(
         props.position
-      )} max-w-weather content-end`}
+      )} max-w-weather content-end bg-light-widget dark:bg-dark-widget`}
     >
       {props.children}
     </div>

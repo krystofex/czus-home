@@ -9,7 +9,7 @@ import { useKrystofQuery, useSensorDataQuery } from "../graphql/hello.graphql";
 const MainGrid = (props) => {
   return (
     <div
-      className="h-screen grid grid-cols-6 grid-rows-6 gap-4 p-4 font-sans"
+      className="h-screen grid grid-cols-6 grid-rows-6 gap-4 p-4 font-sans bg-light-background dark:bg-dark-background"
       style={
         {
           //https://source.unsplash.com/collection/1091/1280x1024

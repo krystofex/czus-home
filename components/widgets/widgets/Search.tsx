@@ -3,7 +3,11 @@ import Image from "next/image";
 
 const Main = (props) => {
   return (
-    <div className={`${TailwindPosition(props.position)} max-h-12 p-2`}>
+    <div
+      className={`${TailwindPosition(
+        props.position
+      )} max-h-12 p-2 bg-light-widget dark:bg-dark-widget`}
+    >
       {props.children}
     </div>
   );
@@ -28,7 +32,7 @@ const Search = ({ name, position }) => {
       <form action={url} className="w-full">
         <input
           name="q"
-          className="w-11/12 outline-none border-none inline-block text-normal"
+          className="w-11/12 outline-none border-none inline-block text-normal bg-light-widget dark:bg-dark-widget"
         />
         <button
           type="submit"
