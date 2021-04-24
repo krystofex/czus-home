@@ -1,6 +1,6 @@
 module.exports = {
     purge: [],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: "class", // or 'media' or 'class'
     theme: {
         extend: {
             animation: {
@@ -21,10 +21,12 @@ module.exports = {
             dark: {
                 background: "#151A21",
                 widget: "#242C37",
+                text: "#FFFFFF",
             },
             light: {
                 background: "#FFFFFF",
                 widget: "#FFFFFF",
+                text: "#6F6F6F",
             },
             next: "#0070f3",
         },

@@ -1,9 +1,23 @@
-import { TailwindPosition } from "./TailwindPosition";
+import { TailwindPosition, Heading } from "./TailwindPosition";
+
+const Main = (props) => {
+  return (
+    <>
+      <div
+        className={`${TailwindPosition(
+          props.position
+        )} max-h-12 p-2 text-light-text dark:text-dark-text bg-light-widget dark:bg-dark-widget`}
+      >
+        {props.children}
+      </div>
+    </>
+  );
+};
 
 const ControlPanel = ({ position }) => {
   return (
     <>
-      <div className="row-start-6 col-start-3 rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"></div>
+      <Main position={position}>idk</Main>
     </>
   );
 };

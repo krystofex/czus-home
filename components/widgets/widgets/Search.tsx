@@ -32,7 +32,7 @@ const Search = ({ name, position }) => {
       <form action={url} className="w-full">
         <input
           name="q"
-          className="w-11/12 outline-none border-none inline-block text-normal bg-light-widget dark:bg-dark-widget"
+          className="w-11/12 outline-none border-none inline-block text-normal text-light-text dark:text-dark-text bg-light-widget dark:bg-dark-widget"
         />
         <button
           type="submit"

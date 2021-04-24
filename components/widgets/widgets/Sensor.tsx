@@ -19,7 +19,7 @@ const Main = (props) => {
 
 const Value = (props) => {
   return (
-    <h4 className="text-next text-2xl text-center font-hairline pt-2 animate-shake">
+    <h4 className="text-next text-2xl text-center font-hairline pt-2 ">
       {props.children}
     </h4>
   );
@@ -76,7 +76,7 @@ const Sensor = ({ name, position }) => {
   if (position[2] > 1 && position[3] > 1)
     output = (
       <Main position={position}>
-        <Heading>{name}:</Heading>
+        <Heading className="text-dark-text">{name}:</Heading>
         <Line data={data1} />
       </Main>
     );
