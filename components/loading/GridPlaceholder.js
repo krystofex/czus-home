@@ -8,14 +8,15 @@ const GridLayoutLoader = (props) => {
         ContentLoader viewBox = "0 0 820 450"
         height = { 450 }
         width = { 820 }
-        speed = { 2 } {...props } >
+        speed = { 2 } >
         <
-        rect x = "10"
+        rect x = "</ContentLoader>10"
         y = "10"
         rx = "5"
         ry = "5"
         width = "260"
-        height = "140" / >
+        height = "140" /
+        >
         <
         rect x = "280"
         y = "10"
@@ -52,7 +53,7 @@ const GridLayoutLoader = (props) => {
         width = "260"
         height = "280" / >
         <
-        /ContentLoader>{" "} <
+        /ContentLoader> <
         /div>
     );
 };

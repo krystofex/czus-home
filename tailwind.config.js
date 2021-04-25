@@ -13,7 +13,8 @@ module.exports = {
                 widget: "#FFFFFF",
                 text: "#000000",
             },
-            next: "#0070f3",
+            nextBlue: "#0070f3",
+            dogeBlood: "#FD4D4D",
         },
 
         boxShadow: {

@@ -20,7 +20,7 @@ const Main = (props) => {
 
 const Value = (props) => {
   return (
-    <h4 className="text-next text-2xl text-center font-hairline pt-2 ">
+    <h4 className="text-nextBlue text-2xl text-center pt-2 ">
       {props.children}
     </h4>
   );
@@ -28,24 +28,48 @@ const Value = (props) => {
 
 const Sensor = ({ name, position }) => {
   const { data, loading, error } = useSensorDataQuery();
-  if (error) return <Main position={position}>error</Main>;
-  if (loading)
+  if (error)
     return (
       <Main position={position}>
-        <ContentLoader
-          className="w-full"
-          speed={1}
-          backgroundColor="rgba(0, 0, 0, 0.24)"
-          foregroundColor="rgba(0, 0, 0, 0.4)"
-        >
-          <rect x="0" y="8" rx="5" ry="5" width="88" height="10" />
-          <rect x="0" y="44" rx="5" ry="5" width="95" height="10" />
-          <rect x="0" y="62" rx="5" ry="5" width="102" height="10" />
-          <rect x="0" y="80" rx="5" ry="5" width="70" height="10" />
-        </ContentLoader>
+        <Heading>{name}:</Heading>
+        <Value>
+          <div className="text-dogeBlood">error</div>
+        </Value>
       </Main>
     );
-
+  if (loading) {
+    if (position[2] > 1 && position[3] > 1)
+      return (
+        <Main position={position}>
+          <ContentLoader
+            className="w-full "
+            speed={1}
+            backgroundColor="rgba(0, 0, 0, 0.1)"
+            foregroundColor="rgba(0, 0, 0, 0.18)"
+          >
+            <rect x="0" y="8" rx="5" ry="5" width="200" height="10" />
+            <rect x="0" y="44" rx="5" ry="5" width="360" height="200" />
+            <rect x="360" y="44" rx="5" ry="5" width="360" height="200" />
+          </ContentLoader>
+        </Main>
+      );
+    else
+      return (
+        <Main position={position}>
+          <ContentLoader
+            className="w-full"
+            speed={1}
+            backgroundColor="rgba(0, 0, 0, 0.1)"
+            foregroundColor="rgba(0, 0, 0, 0.18)"
+          >
+            <rect x="0" y="8" rx="5" ry="5" width="88" height="10" />
+            <rect x="0" y="44" rx="5" ry="5" width="95" height="10" />
+            <rect x="0" y="62" rx="5" ry="5" width="102" height="10" />
+            <rect x="0" y="80" rx="5" ry="5" width="70" height="10" />
+          </ContentLoader>
+        </Main>
+      );
+  }
   const widgetValue =
     name == "temperature"
       ? data.sensor.temperature
@@ -103,7 +127,6 @@ const Sensor = ({ name, position }) => {
         <Value>{widgetValue}</Value>
       </Main>
     );
-
   return output;
 };
 
