@@ -23,16 +23,16 @@ const Home = () => {
   const widgetArray = settings.rooms[0].widgets.map(toWidget);
 
   return (
-    <div className="dark">
+    <>
       <Head>
         <title>{settings.rooms[0].name}</title>
         <link rel="icon" href="icons/favicon.ico" />
       </Head>
       <MainGrid>
         {widgetArray}
-        <Widget widgetName={"controlPanel"} position={[7, 0, 1, 1]} />
+        <Widget widgetName={"controlPanel"} name={""} position={[7, 0, 1, 1]} />
       </MainGrid>
-    </div>
+    </>
   );
 };
 export default Home;

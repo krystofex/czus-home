@@ -2,6 +2,41 @@ module.exports = {
     purge: [],
     darkMode: "class", // or 'media' or 'class'
     theme: {
+        colors: {
+            dark: {
+                background: "#151A21",
+                widget: "#242C37",
+                text: "#FFFFFF",
+            },
+            light: {
+                background: "#FFFFFF",
+                widget: "#FFFFFF",
+                text: "#000000",
+            },
+            next: "#0070f3",
+        },
+
+        boxShadow: {
+            custom: "0px 3px 8px rgba(0, 0, 0, 0.24)",
+        },
+
+        borderRadius: {
+            widget: "1em",
+        },
+
+        fontSize: {
+            normal: "20px",
+        },
+
+        height: {
+            search: "40px",
+        },
+        maxWidth: {
+            weather: "430px",
+        },
+        lineHeight: {
+            middle: "100%",
+        },
         extend: {
             animation: {
                 shake: "shake 0.5s linear infinite",
@@ -16,41 +51,6 @@ module.exports = {
                 },
             },
         },
-
-        colors: {
-            dark: {
-                background: "#151A21",
-                widget: "#242C37",
-                text: "#FFFFFF",
-            },
-            light: {
-                background: "#FFFFFF",
-                widget: "#FFFFFF",
-                text: "#6F6F6F",
-            },
-            next: "#0070f3",
-        },
-
-        boxShadow: {
-            custom: "0px 3px 8px rgba(0, 0, 0, 0.24)",
-        },
-        borderRadius: {
-            widget: "1em",
-        },
-        fontSize: {
-            normal: "20px",
-        },
-
-        height: {
-            search: "40px",
-        },
-        maxWidth: {
-            weather: "430px",
-        },
-        lineHeight: {
-            middle: "100%",
-        },
-        extend: {},
     },
     variants: {
         extend: {},

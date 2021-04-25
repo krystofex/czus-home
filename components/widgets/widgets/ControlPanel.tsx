@@ -1,4 +1,5 @@
 import { TailwindPosition, Heading } from "./TailwindPosition";
+import useDarkMode from "../../../src/hooks/useDarkMode";
 
 const Main = (props) => {
   return (
@@ -15,9 +16,15 @@ const Main = (props) => {
 };
 
 const ControlPanel = ({ position }) => {
+  const [colorTheme, setTheme] = useDarkMode();
+
   return (
     <>
-      <Main position={position}>idk</Main>
+      <Main position={position}>
+        <button onClick={() => setTheme(colorTheme)} className="h-4">
+          {colorTheme === "dark" ? "dark" : "light"}
+        </button>
+      </Main>
     </>
   );
 };
