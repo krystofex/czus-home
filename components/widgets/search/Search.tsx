@@ -1,13 +1,9 @@
-import { TailwindPosition } from "./TailwindPosition";
+import { GridPosition } from "../WidgetController";
 import Image from "next/image";
 
 const Main = (props) => {
   return (
-    <div
-      className={`${TailwindPosition(
-        props.position
-      )} max-h-12 p-2 bg-light-widget dark:bg-dark-widget`}
-    >
+    <div className={`${GridPosition(props.position)} max-h-12 p-2 `}>
       {props.children}
     </div>
   );

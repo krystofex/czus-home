@@ -1,12 +1,10 @@
-import { TailwindPosition, Heading } from "./TailwindPosition";
+import { GridPosition, Heading } from "../WidgetController";
 import React, { useState, useEffect } from "react";
 
 const Main = (props) => {
   return (
     <div
-      className={`${TailwindPosition(
-        props.position
-      )} max-w-weather content-end bg-light-widget dark:bg-dark-widget`}
+      className={`${GridPosition(props.position)} max-w-weather content-end `}
     >
       {props.children}
     </div>
