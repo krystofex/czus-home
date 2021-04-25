@@ -1,7 +1,8 @@
 import { TailwindPosition, Heading } from "./TailwindPosition";
-import { Line } from "react-chartjs-2";
-import Image from "next/image";
 import { useSensorDataQuery } from "../../../graphql/hello.graphql";
+import ContentLoader from "react-content-loader";
+import { Line } from "react-chartjs-2";
+import React from "react";
 
 const Main = (props) => {
   return (
@@ -27,8 +28,23 @@ const Value = (props) => {
 
 const Sensor = ({ name, position }) => {
   const { data, loading, error } = useSensorDataQuery();
-  if (error) return "error";
-  if (loading) return "loading";
+  if (error) return <Main position={position}>error</Main>;
+  if (loading)
+    return (
+      <Main position={position}>
+        <ContentLoader
+          className="w-full"
+          speed={1}
+          backgroundColor="rgba(0, 0, 0, 0.24)"
+          foregroundColor="rgba(0, 0, 0, 0.4)"
+        >
+          <rect x="0" y="8" rx="5" ry="5" width="88" height="10" />
+          <rect x="0" y="44" rx="5" ry="5" width="95" height="10" />
+          <rect x="0" y="62" rx="5" ry="5" width="102" height="10" />
+          <rect x="0" y="80" rx="5" ry="5" width="70" height="10" />
+        </ContentLoader>
+      </Main>
+    );
 
   const widgetValue =
     name == "temperature"
