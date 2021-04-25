@@ -1,41 +1,38 @@
 {
-  "settings": {
-    "mode": "light"
-  },
-  "rooms": [
-    {
-      "name": "My room",
-      "widgets": [
-        {
-          "widgetName": "search",
-          "name": "google",
-          "position": [2, 0, 4, 1]
-        },
-        {
-          "widgetName": "sensor",
-          "name": "temperature",
-          "position": [1, 7, 1, 2]
-        },
-        {
-          "widgetName": "sensor",
-          "name": "pressure",
-          "position": [2, 7, 1, 2]
-        },
-        {
-          "widgetName": "sensor",
-          "name": "humidity",
-          "position": [3, 7, 1, 2]
-        },
-        {
-          "widgetName": "sensor",
-          "name": "temperature",
-          "position": [1, 2, 4, 4]
-        },
-        {
-          "widgetName": "weather",
-          "position": [4, 7, 3, 1]
-        }
-      ]
-    }
-  ]
+    "settings": {
+        "mode": "light"
+    },
+    "rooms": [{
+        "name": "My room",
+        "widgets": [{
+                "widgetName": "search",
+                "name": "google",
+                "position": [2, 1, 4, 1]
+            },
+            {
+                "widgetName": "sensor",
+                "name": "temperature",
+                "position": [1, 5, 1, 1]
+            },
+            {
+                "widgetName": "sensor",
+                "name": "pressure",
+                "position": [2, 5, 1, 1]
+            },
+            {
+                "widgetName": "sensor",
+                "name": "humidity",
+                "position": [3, 5, 1, 1]
+            },
+            {
+                "widgetName": "sensor",
+                "name": "temperature",
+                "position": [1, 2, 3, 3]
+            },
+            {
+                "widgetName": "weather",
+                "position": [4, 5, 3, 1]
+            }
+        ]
+    }]
 }
