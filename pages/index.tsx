@@ -1,9 +1,10 @@
-import "tailwindcss/tailwind.css";
-import React, { useState, useEffect } from "react";
-import Head from "next/head";
-import Widget from "../src/components/widgets/WidgetController";
+import 'tailwindcss/tailwind.css';
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
+import Widget from '../src/components/widgets/WidgetController';
+import Cookie from 'js-cookie';
 
-import settings from "../src/components/settings/czusHomeConfig.json";
+import settings from '../src/components/settings/czusHomeConfig.json';
 
 const MainGrid = (props) => {
     return (
@@ -35,10 +36,10 @@ const Home = () => {
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
             <MainGrid>
-                {widgetArray}{" "}
+                {widgetArray}{' '}
                 <Widget
-                    widgetName={"controlPanel"}
-                    name={""}
+                    widgetName={'controlPanel'}
+                    name={''}
                     position={[6, 0, 2, 1]}
                 />
             </MainGrid>

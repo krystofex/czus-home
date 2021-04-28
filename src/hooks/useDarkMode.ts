@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 
 export default function useDarkMode() {
-  const [theme, setTheme] = useState("dark");
-  const colorTheme = theme === "dark" ? "light" : "dark";
+    const [theme, setTheme] = useState('dark');
+    const colorTheme = theme === 'dark' ? 'light' : 'dark';
 
-  useEffect(() => {
-    const root = window.document.documentElement;
+    useEffect(() => {
+        const root = window.document.documentElement;
 
-    root.classList.remove(colorTheme);
-    root.classList.add(theme);
-  }, [theme]);
+        root.classList.remove(colorTheme);
+        root.classList.add(theme);
+    }, [theme]);
 
-  return [colorTheme, setTheme];
+    return [colorTheme, setTheme];
 }
