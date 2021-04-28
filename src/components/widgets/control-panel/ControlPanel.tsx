@@ -1,5 +1,6 @@
 import { GridPosition } from '../WidgetController';
 import React, { useEffect, useState } from 'react';
+import Moment from 'react-moment';
 import Cookie from 'js-cookie';
 
 const ControlPanel = ({ position }) => {
@@ -21,13 +22,13 @@ const ControlPanel = ({ position }) => {
         return;
     }, [theme]);
 
-    //<Moment format="hh:mm:ss" interval={10} className="floatLeft" />
     return (
         <div
             className={`${GridPosition(
                 position
             )} w-full max-h-12 p-2 text-light-text dark:text-dark-text inline`}
         >
+            <Moment format="hh:mm:ss" interval={10} className="floatLeft" />
             <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             >
