@@ -2,7 +2,6 @@ import 'tailwindcss/tailwind.css';
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
-import Cookie from 'js-cookie';
 
 import settings from '../src/components/settings/czusHomeConfig.json';
 
