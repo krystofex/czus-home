@@ -1,5 +1,5 @@
 import { GridPosition } from "../WidgetController";
-import useDarkMode from "../../../src/hooks/useDarkMode";
+import useDarkMode from "../../../hooks/useDarkMode";
 import Moment from "react-moment";
 import Draggable from "react-draggable";
 const ControlPanel = ({ position }) => {

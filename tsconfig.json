@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/widgets/TailwindPosition.tsx"
+    "src/components/widgets/TailwindPosition.tsx"
   ],
   "exclude": [
     "node_modules"

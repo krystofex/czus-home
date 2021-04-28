@@ -1,9 +1,9 @@
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Widget from "../components/widgets/WidgetController";
+import Widget from "../src/components/widgets/WidgetController";
 
-import settings from "../components/settings/czusHomeConfig.json";
+import settings from "../src/components/settings/czusHomeConfig.json";
 
 const MainGrid = (props) => {
     return (
