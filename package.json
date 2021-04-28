@@ -12,10 +12,8 @@
     "dependencies": {
         "@apollo/client": "^3.3.14",
         "@graphql-tools/load-files": "^6.3.2",
-        "@nexus/schema": "^0.20.1",
         "apollo-link-ws": "^1.0.20",
         "apollo-server-micro": "^2.21.0",
-        "chart.js": "^2.9.4",
         "eslint": "^7.25.0",
         "graphql": "^15.5.0",
         "graphql-subscriptions": "^1.2.1",
