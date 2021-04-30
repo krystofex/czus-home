@@ -6,11 +6,11 @@ import Search from './search/Search';
 const Widget = ({ widgetName, name, position }) => {
     switch (widgetName) {
         case 'controlPanel':
-            return <ControlPanel position={position} />;
+            return <ControlPanel />;
         case 'weather':
-            return <Weather position={position} />;
+            return <Weather />;
         case 'search':
-            return <Search name={name} position={position} />;
+            return <Search name={name} />;
         case 'sensor':
             return <Sensor name={name} />;
     }

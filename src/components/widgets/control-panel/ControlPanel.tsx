@@ -1,10 +1,8 @@
-import { GridPosition } from '../WidgetController';
 import Moment from 'react-moment';
-import Draggable from 'react-draggable';
 import React, { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 
-const ControlPanel = ({ position }) => {
+const ControlPanel = () => {
     const [theme, setTheme] = useState('mode');
 
     useEffect(() => {
@@ -24,22 +22,14 @@ const ControlPanel = ({ position }) => {
     }, [theme]);
 
     return (
-        <Draggable grid={[25, 25]}>
-            <div
-                className={`${GridPosition(
-                    position
-                )} w-full max-h-12 p-2 text-light-text dark:text-dark-text inline`}
+        <div className="text-light-text dark:text-dark-text">
+            <Moment format="hh:mm:ss" interval={10} className="floatLeft" />
+            <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             >
-                <Moment format="hh:mm:ss" interval={10} className="floatLeft" />
-                <button
-                    onClick={() =>
-                        setTheme(theme === 'dark' ? 'light' : 'dark')
-                    }
-                >
-                    {theme === 'dark' ? 'light' : 'dark'}
-                </button>
-            </div>
-        </Draggable>
+                {theme === 'dark' ? 'light' : 'dark'}
+            </button>
+        </div>
     );
 };
 

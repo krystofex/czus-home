@@ -5,33 +5,15 @@ import Widget from '../src/components/widgets/WidgetController';
 import GridLayout from 'react-grid-layout';
 import settings from '../src/components/settings/czusHomeConfig.json';
 
-const MainGrid = (props) => {
-    return (
-        <div className="h-screen grid grid-cols-6 grid-rows-6 gap-3 p-3 font-sans bg-light-background dark:bg-dark-background">
-            {props.children}
-        </div>
-    );
-};
-
-const toWidget = (element) => {
-    const { widgetName, name, position } = element;
-    return (
-        <Widget
-            key={position}
-            widgetName={widgetName}
-            name={name}
-            position={position}
-        />
-    );
-};
-
 const Home = () => {
-    const widgetArray = settings.rooms[0].widgets.map(toWidget);
-
     return (
         <>
+            <Head>
+                <title>{settings.rooms[0].name}</title>
+                <link rel="icon" href="icons/favicon.ico" />
+            </Head>
             <GridLayout
-                className="layout"
+                className="h-screen w-screen font-sans bg-light-background dark:bg-dark-background"
                 cols={12}
                 rowHeight={30}
                 width={1200}
@@ -42,16 +24,13 @@ const Home = () => {
                     data-grid={{
                         x: 1,
                         y: 3,
-                        w: 3,
-                        h: 2,
-                        minW: 2,
-                        maxW: 4,
+                        w: 4,
+                        h: 3,
                         isResizable: true,
                         isDraggable: true,
-                        esizeHandles: true,
                     }}
                 >
-                    <Widget widgetName={'sensor'} name={'humidity'} />
+                    <Widget widgetName="weather" />
                 </div>
                 <div
                     className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
@@ -65,10 +44,9 @@ const Home = () => {
                         maxW: 4,
                         isResizable: true,
                         isDraggable: true,
-                        esizeHandles: true,
                     }}
                 >
-                    <Widget widgetName={'sensor'} name={'pressure'} />
+                    <Widget widgetName="sensor" name="temperature" />
                 </div>
                 <div
                     className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
@@ -82,10 +60,24 @@ const Home = () => {
                         maxW: 4,
                         isResizable: true,
                         isDraggable: true,
-                        esizeHandles: true,
                     }}
                 >
-                    <Widget widgetName={'sensor'} name={'temperature'} />
+                    <Widget widgetName="controlPanel" />
+                </div>
+
+                <div
+                    className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                    key="e"
+                    data-grid={{
+                        x: 8,
+                        y: 2,
+                        w: 9,
+                        h: 2,
+                        isResizable: true,
+                        isDraggable: true,
+                    }}
+                >
+                    <Widget widgetName="search" name="google" />
                 </div>
             </GridLayout>
         </>
