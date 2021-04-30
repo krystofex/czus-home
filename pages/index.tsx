@@ -51,7 +51,7 @@ const Home = () => {
                         esizeHandles: true,
                     }}
                 >
-                    b
+                    <Widget widgetName={'sensor'} name={'humidity'} />
                 </div>
                 <div
                     className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
@@ -68,7 +68,7 @@ const Home = () => {
                         esizeHandles: true,
                     }}
                 >
-                    b
+                    <Widget widgetName={'sensor'} name={'pressure'} />
                 </div>
                 <div
                     className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
@@ -85,7 +85,7 @@ const Home = () => {
                         esizeHandles: true,
                     }}
                 >
-                    b
+                    <Widget widgetName={'sensor'} name={'temperature'} />
                 </div>
             </GridLayout>
         </>
