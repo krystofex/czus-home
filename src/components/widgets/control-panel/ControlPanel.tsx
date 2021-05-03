@@ -6,13 +6,10 @@ const ControlPanel = () => {
     const [theme, setTheme] = useState('mode');
 
     useEffect(() => {
-        console.log('useEffect');
         setTheme(Cookie.get('theme') === 'dark' ? 'dark' : 'light');
     }, []);
 
     useEffect(() => {
-        console.log('useEffect2');
-
         const root = window.document.documentElement;
 
         root.classList.remove(theme === 'dark' ? 'light' : 'dark');
