@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
 import SettingsWindow from '../src/components/settings/SettingsWindow';
-import GridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const Home = () => {
+    const ResponsiveGridLayout = WidthProvider(Responsive);
+
     return (
         <>
             <Head>
@@ -13,7 +15,18 @@ const Home = () => {
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
             <body className="bg-light-background dark:bg-dark-background">
-                <GridLayout cols={12} rowHeight={30} width={1200}>
+                <ResponsiveGridLayout
+                    className="layout"
+                    breakpoints={{
+                        lg: 1200,
+                        md: 996,
+                        sm: 768,
+                        xs: 480,
+                        xxs: 0,
+                    }}
+                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                    rowHeight={30}
+                >
                     <div
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="b"
@@ -75,7 +88,7 @@ const Home = () => {
                     >
                         <Widget widgetName="search" name="google" />
                     </div>
-                </GridLayout>
+                </ResponsiveGridLayout>
 
                 <SettingsWindow />
             </body>
