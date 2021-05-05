@@ -10,5 +10,6 @@
 git clone https://github.com/krystofex/czus-home
 cd czus-home
 yarn install
-yarn build && yarn start
+yarn build
+yarn start
 ```
