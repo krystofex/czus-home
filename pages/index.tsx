@@ -12,13 +12,8 @@ const Home = () => {
                 <title>{'myRoom'}</title>
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
-            <div>
-                <GridLayout
-                    className="bg-light-background dark:bg-dark-background"
-                    cols={12}
-                    rowHeight={30}
-                    width={1200}
-                >
+            <body className="bg-light-background dark:bg-dark-background">
+                <GridLayout cols={12} rowHeight={30} width={1200}>
                     <div
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="b"
@@ -83,7 +78,7 @@ const Home = () => {
                 </GridLayout>
 
                 <SettingsWindow />
-            </div>
+            </body>
         </>
     );
 };
