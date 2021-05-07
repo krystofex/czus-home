@@ -1,5 +1,5 @@
 {
-    "name": "czushomets",
+    "name": "czus-home",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -12,21 +12,20 @@
     "dependencies": {
         "@apollo/client": "^3.3.14",
         "@graphql-tools/load-files": "^6.3.2",
-        "@nexus/schema": "^0.20.1",
         "apollo-link-ws": "^1.0.20",
         "apollo-server-micro": "^2.21.0",
-        "chart.js": "^2.9.4",
+        "chart.js": "^3.2.0",
         "eslint": "^7.25.0",
         "graphql": "^15.5.0",
         "graphql-subscriptions": "^1.2.1",
         "graphql-tools": "^7.0.4",
         "js-cookie": "^2.2.1",
+        "moment": "^2.29.1",
         "mongodb": "^3.6.5",
         "next": "10.0.7",
         "react": "17.0.1",
-        "react-chartjs-2": "^2.11.1",
+        "react-chartjs-2": "^3.0.3",
         "react-content-loader": "^6.0.3",
-        "react-cookie": "^4.0.3",
         "react-dom": "17.0.1",
         "react-grid-layout": "^1.2.4",
         "react-moment": "^1.1.1"
