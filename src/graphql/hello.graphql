@@ -1,7 +1,3 @@
-query Krystof {
-    hello
-}
-
 query SensorData {
     sensor {
         macAddress
@@ -18,5 +14,18 @@ query Widget {
         name
         room
         position
+    }
+}
+
+query Value {
+    value {
+        _id
+        mac
+        time
+        values {
+            temp
+            humidity
+            pressure
+        }
     }
 }

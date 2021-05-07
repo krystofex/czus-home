@@ -11,10 +11,6 @@ const typeDefs = mergeTypeDefs(loadedFiles);
 
 const resolvers = {
     Query: {
-        hello: (_parent, _args, _context) => {
-            return 'hello';
-        },
-
         sensor: async (_parent, _args, _context) => {
             return await fetch('http://192.168.1.185/api').then((x) =>
                 x.json()
@@ -26,6 +22,15 @@ const resolvers = {
             const response = await db
                 .collection('widgets')
                 .find({ room: 'myRoom' })
+                .toArray();
+            return response;
+        },
+
+        value: async () => {
+            const { db } = await connectToDatabase();
+            const response = await db
+                .collection('values')
+                .find({ mac: '00:1B:44:11:3A:B7' })
                 .toArray();
             return response;
         },
