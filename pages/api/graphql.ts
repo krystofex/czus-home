@@ -18,7 +18,7 @@ const resolvers = {
         },
         openWeather: async (_parent, _args, _context) => {
             return await fetch(
-                `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${process.env.OPENWEATHER_KEY}`
+                `http://api.openweathermap.org/data/2.5/weather?q=London&mode=json&units=metric&appid=${process.env.OPENWEATHER_KEY}`
             ).then((x) => x.json());
         },
 

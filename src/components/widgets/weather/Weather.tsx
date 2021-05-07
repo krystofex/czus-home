@@ -1,7 +1,13 @@
 import { Heading } from '../WidgetController';
-import React, { useState, useEffect } from 'react';
+import { useOpenWeatherQuery } from '../../../graphql/openWeather.graphql';
 
 const Weather = () => {
+    const { data, loading, error } = useOpenWeatherQuery();
+
+    if (error) return 'error';
+
+    if (loading) return 'loading';
+    console.log(data.openWeather.main.temp);
     return (
         <div className="w-weather content-end">
             <Heading>weather</Heading>
@@ -9,13 +15,15 @@ const Weather = () => {
                 <img src="" className="h-full" />
                 <div>
                     <span className="font-normal text-nextBlue text-3xl">
-                        °C
+                        {data.openWeather.main.temp} °C
                     </span>
                     <br></br>
-                    feels like: °C<br></br>
+                    feels like: {data.openWeather.main.feels_like}°C<br></br>
                 </div>
                 <div>
-                    min: °C<br></br> max: °C<br></br> pressure: hPa
+                    min: {data.openWeather.main.temp_min} °C<br></br> max:{' '}
+                    {data.openWeather.main.temp_max} °C
+                    <br></br> pressure: {data.openWeather.main.pressure} hPa
                 </div>
             </div>
         </div>
