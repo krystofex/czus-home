@@ -4,11 +4,18 @@ import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
 // import SettingsWindow from '../src/components/settings/SettingsWindow';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import { useWidgetQuery } from '../src/graphql/hello.graphql';
 import useDarkMode from '../src/hooks/useDarkMode';
+import ContentLoader from 'react-content-loader';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const [theme, setTheme] = useDarkMode();
+    const { data, loading, error } = useWidgetQuery();
+
+    if (error) return 'error';
+
+    if (loading) return 'loading';
 
     return (
         <>
@@ -16,7 +23,7 @@ const Home = () => {
                 <title>{'myRoom'}</title>
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
-            <body className="bg-light-background dark:bg-dark-background">
+            <div>
                 <ResponsiveGridLayout
                     className="layout"
                     breakpoints={{
@@ -92,7 +99,7 @@ const Home = () => {
                     </div>
                 </ResponsiveGridLayout>
                 {theme}
-            </body>
+            </div>
         </>
     );
 };

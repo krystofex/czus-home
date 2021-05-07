@@ -15,6 +15,9 @@ export default function useDarkMode() {
 
         root.classList.remove(previousTheme);
         root.classList.add(theme);
+        root.classList.remove('bg-' + previousTheme + '-background');
+        root.classList.add('bg-' + theme + '-background');
+
         Cookie.set('theme', theme);
         return;
     }, [theme]);
