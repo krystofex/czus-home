@@ -1,0 +1,31 @@
+query OpenWeather {
+    openWeather {
+        main {
+            temp
+            feels_like
+            temp_min
+            temp_max
+            pressure
+            humidity
+        }
+        weather {
+            main
+            description
+            icon
+        }
+        wind {
+            speed
+            deg
+        }
+        sys {
+            country
+            sunrise
+            sunset
+        }
+        clouds {
+            all
+        }
+        visibility
+        name
+    }
+}

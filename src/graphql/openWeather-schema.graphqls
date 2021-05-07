@@ -1,0 +1,39 @@
+type OpenWeather {
+    main: OpenWeatherMain
+    weather: OpenWeatherWeather
+    wind: OpenWeatherWind
+    sys: OpenWeatherSys
+    clouds: OpenWeatherClouds
+    visibility: Float
+    name: String
+}
+
+type OpenWeatherMain {
+    temp: Float
+    feels_like: Float
+    temp_min: Float
+    temp_max: Float
+    pressure: Float
+    humidity: Float
+}
+
+type OpenWeatherWeather {
+    main: String
+    description: String
+    icon: String
+}
+
+type OpenWeatherWind {
+    speed: Float
+    deg: Float
+}
+
+type OpenWeatherClouds {
+    all: Int
+}
+
+type OpenWeatherSys {
+    country: String
+    sunrise: Int
+    sunset: Int
+}
