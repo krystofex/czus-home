@@ -1,12 +1,22 @@
 query Krystof {
-  hello
+    hello
 }
 
 query SensorData {
-  sensor {
-    macAddress
-    temperature
-    pressure
-    humidity
-  }
+    sensor {
+        macAddress
+        temperature
+        pressure
+        humidity
+    }
+}
+
+query Widget {
+    widget {
+        _id
+        widgetName
+        name
+        room
+        position
+    }
 }

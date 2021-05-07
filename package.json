@@ -27,7 +27,6 @@
         "react-chartjs-2": "^3.0.3",
         "react-content-loader": "^6.0.3",
         "react-dom": "17.0.1",
-        "react-draggable": "^4.4.3",
         "react-grid-layout": "^1.2.4",
         "react-moment": "^1.1.1"
     },

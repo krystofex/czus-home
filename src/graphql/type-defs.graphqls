@@ -1,11 +1,20 @@
 type Query {
-  hello: String!
-  sensor: Sensor
+    hello: String!
+    sensor: Sensor
+    widget: [Widget]
 }
 
 type Sensor {
-  macAddress: String!
-  temperature: Float!
-  pressure: Float!
-  humidity: Float!
+    macAddress: String!
+    temperature: Float!
+    pressure: Float!
+    humidity: Float!
+}
+
+type Widget {
+    _id: String!
+    widgetName: String!
+    name: String
+    room: String!
+    position: [Int!]!
 }

@@ -1,47 +1,113 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
-
-import settings from '../src/components/settings/czusHomeConfig.json';
-
-const MainGrid = (props) => {
-    return (
-        <div className="h-screen grid grid-cols-6 grid-rows-6 gap-3 p-3 font-sans bg-light-background dark:bg-dark-background">
-            {props.children}
-        </div>
-    );
-};
-
-const toWidget = (element) => {
-    const { widgetName, name, position } = element;
-    return (
-        <Widget
-            key={position}
-            widgetName={widgetName}
-            name={name}
-            position={position}
-        />
-    );
-};
-
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import { useWidgetQuery } from '../src/graphql/hello.graphql';
+// import ContentLoader from 'react-content-loader';
+import ErrorPage from '../src/components/errorPage';
 const Home = () => {
-    const widgetArray = settings.rooms[0].widgets.map(toWidget);
+    const ResponsiveGridLayout = WidthProvider(Responsive);
+    const { data, loading, error } = useWidgetQuery();
+    if (error) return <ErrorPage />;
+
+    if (loading)
+        return (
+            <ResponsiveGridLayout
+                className="layout"
+                breakpoints={{
+                    lg: 1200,
+                    md: 996,
+                    sm: 768,
+                    xs: 480,
+                    xxs: 0,
+                }}
+                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                rowHeight={30}
+            ></ResponsiveGridLayout>
+        );
+    console.log(data[0]);
 
     return (
         <>
             <Head>
-                <title>{settings.rooms[0].name}</title>
+                <title>{'myRoom'}</title>
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
-            <MainGrid>
-                {widgetArray}{' '}
-                <Widget
-                    widgetName={'controlPanel'}
-                    name={''}
-                    position={[6, 0, 2, 1]}
-                />
-            </MainGrid>
+            <div>
+                <ResponsiveGridLayout
+                    className="layout"
+                    breakpoints={{
+                        lg: 1200,
+                        md: 996,
+                        sm: 768,
+                        xs: 480,
+                        xxs: 0,
+                    }}
+                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                    rowHeight={20}
+                >
+                    <div
+                        className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                        key="b"
+                        data-grid={{
+                            x: 3,
+                            y: 3,
+                            w: 4,
+                            h: 5,
+                            isResizable: true,
+                            isDraggable: true,
+                        }}
+                    >
+                        <Widget widgetName="weather" name="" />
+                    </div>
+                    <div
+                        className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                        key="c"
+                        data-grid={{
+                            x: 1,
+                            y: 3,
+                            w: 2,
+                            h: 5,
+                            minW: 2,
+                            maxW: 2,
+                            isResizable: true,
+                            isDraggable: true,
+                        }}
+                    >
+                        <Widget widgetName="sensor" name="temperature" />
+                    </div>
+                    <div
+                        className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                        key="d"
+                        data-grid={{
+                            x: 10,
+                            y: 0,
+                            w: 2,
+                            h: 2,
+                            isResizable: true,
+                            isDraggable: true,
+                        }}
+                    >
+                        <Widget widgetName="controlPanel" name="" />
+                    </div>
+
+                    <div
+                        className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                        key="e"
+                        data-grid={{
+                            x: 1,
+                            y: 0,
+                            w: 8,
+                            h: 2,
+                            isResizable: true,
+                            isDraggable: true,
+                        }}
+                    >
+                        <Widget widgetName="search" name="google" />
+                    </div>
+                </ResponsiveGridLayout>
+            </div>
         </>
     );
 };

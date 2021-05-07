@@ -1,7 +1,6 @@
-import { GridPosition } from '../WidgetController';
 import Image from 'next/image';
 
-const Search = ({ name, position }) => {
+const Search = ({ name }) => {
     var url;
     switch (name) {
         case 'google':
@@ -16,7 +15,7 @@ const Search = ({ name, position }) => {
     }
 
     return (
-        <div className={`${GridPosition(position)} max-h-12 p-2 `}>
+        <div>
             <form action={url} className="w-full">
                 <input
                     name="q"
