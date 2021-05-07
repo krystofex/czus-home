@@ -9,6 +9,7 @@
 ```shell
 git clone https://github.com/krystofex/czus-home
 cd czus-home
+mv .\.env.local.example .\.env.local
 yarn install
 yarn build
 yarn start
