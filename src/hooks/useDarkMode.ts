@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 
-export default function useDarkMode(){
+export default function useDarkMode() {
     const [theme, setTheme] = useState('dark');
 
     useEffect(() => {

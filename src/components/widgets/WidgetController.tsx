@@ -3,7 +3,7 @@ import ControlPanel from './control-panel/ControlPanel';
 import Sensor from './sensor/Sensor';
 import Search from './search/Search';
 
-const Widget = ({ widgetName, name, position }) => {
+const Widget = ({ widgetName, name }) => {
     switch (widgetName) {
         case 'controlPanel':
             return <ControlPanel />;

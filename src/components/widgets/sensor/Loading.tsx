@@ -1,4 +1,3 @@
-import { GridPosition } from '../WidgetController';
 import ContentLoader from 'react-content-loader';
 
 export const LoadingChart = (props) => {

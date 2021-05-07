@@ -1,12 +1,14 @@
 import 'tailwindcss/tailwind.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
-import SettingsWindow from '../src/components/settings/SettingsWindow';
+// import SettingsWindow from '../src/components/settings/SettingsWindow';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import useDarkMode from '../src/hooks/useDarkMode';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
+    const [theme, setTheme] = useDarkMode();
 
     return (
         <>
@@ -39,7 +41,7 @@ const Home = () => {
                             isDraggable: true,
                         }}
                     >
-                        <Widget widgetName="weather" />
+                        <Widget widgetName="weather" name="" />
                     </div>
                     <div
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
@@ -71,7 +73,7 @@ const Home = () => {
                             isDraggable: true,
                         }}
                     >
-                        <Widget widgetName="controlPanel" />
+                        <Widget widgetName="controlPanel" name="" />
                     </div>
 
                     <div
@@ -89,8 +91,7 @@ const Home = () => {
                         <Widget widgetName="search" name="google" />
                     </div>
                 </ResponsiveGridLayout>
-
-                <SettingsWindow />
+                {theme}
             </body>
         </>
     );

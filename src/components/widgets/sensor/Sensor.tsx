@@ -1,7 +1,6 @@
 import { Heading } from '../WidgetController';
-import { LoadingChart, LoadingValue } from './Loading';
 import { useSensorDataQuery } from '../../../graphql/hello.graphql';
-import { Line } from 'react-chartjs-2';
+import ContentLoader from 'react-content-loader';
 
 const Sensor = ({ name }) => {
     const { data, loading, error } = useSensorDataQuery();
@@ -16,10 +15,21 @@ const Sensor = ({ name }) => {
             </div>
         );
 
-    if (loading) return LoadingValue;
+    if (loading)
+        return (
+            <ContentLoader
+                className="w-full"
+                speed={1}
+                backgroundColor="rgba(0, 0, 0, 0.1)"
+                foregroundColor="rgba(0, 0, 0, 0.18)"
+            >
+                <rect x="0" y="8" rx="5" ry="5" width="88" height="10" />
+                <rect x="0" y="22" rx="5" ry="5" width="95" height="10" />
+                <rect x="0" y="36" rx="5" ry="5" width="102" height="10" />
+            </ContentLoader>
+        );
 
     var widgetValue;
-    //const =
     switch (name) {
         case 'temperature':
             widgetValue = data.sensor.temperature;
@@ -31,40 +41,6 @@ const Sensor = ({ name }) => {
             widgetValue = data.sensor.humidity;
             break;
     }
-    const chartData = {
-        labels: [
-            '12:25',
-            '12:30',
-            '12:35',
-            '12:40',
-            '12:45',
-            '12:50',
-            '12:55',
-            '13:00',
-            '13:05',
-            '13:10',
-        ],
-        datasets: [
-            {
-                label: 'temperature',
-                data: [
-                    22.1,
-                    22.6,
-                    22,
-                    21,
-                    21.4,
-                    22,
-                    21.8,
-                    22.6,
-                    23,
-                    data.sensor.temperature,
-                ],
-                fill: false,
-                borderColor: 'rgba(68, 106, 212, 1)',
-            },
-        ],
-    };
-
     return (
         <div>
             <Heading>{name}</Heading>
