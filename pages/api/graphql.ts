@@ -16,6 +16,11 @@ const resolvers = {
                 x.json()
             );
         },
+        openWeather: async (_parent, _args, _context) => {
+            return await fetch(
+                `http://api.openweathermap.org/data/2.5/weather?q=London&appid=${process.env.OPENWEATHER_KEY}`
+            ).then((x) => x.json());
+        },
 
         widget: async () => {
             const { db } = await connectToDatabase();

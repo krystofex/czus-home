@@ -6,6 +6,7 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useWidgetQuery } from '../src/graphql/hello.graphql';
 // import ContentLoader from 'react-content-loader';
 import ErrorPage from '../src/components/errorPage';
+
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
