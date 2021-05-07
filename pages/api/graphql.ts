@@ -27,7 +27,6 @@ const resolvers = {
                 .collection('widgets')
                 .find({ room: 'myRoom' })
                 .toArray();
-            console.log(response);
             return response;
         },
     },

@@ -6,7 +6,7 @@ import Widget from '../src/components/widgets/WidgetController';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useWidgetQuery } from '../src/graphql/hello.graphql';
 import useDarkMode from '../src/hooks/useDarkMode';
-import ContentLoader from 'react-content-loader';
+// import ContentLoader from 'react-content-loader';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -98,7 +98,6 @@ const Home = () => {
                         <Widget widgetName="search" name="google" />
                     </div>
                 </ResponsiveGridLayout>
-                {theme}
             </div>
         </>
     );
