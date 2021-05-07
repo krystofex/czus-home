@@ -45,16 +45,16 @@ const Home = () => {
                         xxs: 0,
                     }}
                     cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-                    rowHeight={30}
+                    rowHeight={20}
                 >
                     <div
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="b"
                         data-grid={{
-                            x: 1,
+                            x: 3,
                             y: 3,
                             w: 4,
-                            h: 3,
+                            h: 5,
                             isResizable: true,
                             isDraggable: true,
                         }}
@@ -66,11 +66,11 @@ const Home = () => {
                         key="c"
                         data-grid={{
                             x: 1,
-                            y: 1,
-                            w: 3,
-                            h: 2,
+                            y: 3,
+                            w: 2,
+                            h: 5,
                             minW: 2,
-                            maxW: 4,
+                            maxW: 2,
                             isResizable: true,
                             isDraggable: true,
                         }}
@@ -81,12 +81,10 @@ const Home = () => {
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="d"
                         data-grid={{
-                            x: 1,
-                            y: 2,
-                            w: 3,
+                            x: 10,
+                            y: 0,
+                            w: 2,
                             h: 2,
-                            minW: 2,
-                            maxW: 4,
                             isResizable: true,
                             isDraggable: true,
                         }}
@@ -98,9 +96,9 @@ const Home = () => {
                         className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="e"
                         data-grid={{
-                            x: 8,
-                            y: 2,
-                            w: 9,
+                            x: 1,
+                            y: 0,
+                            w: 8,
                             h: 2,
                             isResizable: true,
                             isDraggable: true,
