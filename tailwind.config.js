@@ -41,6 +41,7 @@ module.exports = {
         extend: {
             animation: {
                 shake: "shake 0.5s linear infinite",
+                pulseOnce: "pulse 0.5s linear"
             },
             keyframes: {
                 shake: {

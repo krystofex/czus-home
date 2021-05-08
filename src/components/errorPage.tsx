@@ -4,7 +4,7 @@ const ErrorPage = () => {
     useDarkMode();
 
     return (
-        <body className="w-full mt-20 text-center">
+        <div className="w-full mt-20 text-center">
             <h1 className="text-light-text dark:text-dark-text">
                 Cannot connect to database
             </h1>
@@ -13,7 +13,7 @@ const ErrorPage = () => {
                     refresh
                 </button>
             </a>
-        </body>
+        </div>
     );
 };
 
