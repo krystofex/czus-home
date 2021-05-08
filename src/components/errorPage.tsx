@@ -1,13 +1,19 @@
+import useDarkMode from '../hooks/useDarkMode';
+
 const ErrorPage = () => {
+    useDarkMode();
+
     return (
-        <div>
-            <h1 className="">Cannot connect to database</h1>
+        <body className="w-full mt-20 text-center">
+            <h1 className="text-light-text dark:text-dark-text">
+                Cannot connect to database
+            </h1>
             <a href="/">
-                <button className="bg-dogeBlood text-2xl text-center p-2 rounded-widget shadow-custom">
+                <button className="bg-nextBlue text-dark-text text-2xl text-center py-1.5 px-4 mt-3 rounded-widget shadow-custom">
                     refresh
                 </button>
             </a>
-        </div>
+        </body>
     );
 };
 

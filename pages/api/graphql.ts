@@ -1,4 +1,5 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-micro';
+import { PubSub } from 'graphql-subscriptions';
 import { loadFilesSync } from '@graphql-tools/load-files';
 import { mergeTypeDefs } from '@graphql-tools/merge';
 import { join } from 'path';
@@ -6,36 +7,42 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../../src/utils/dbConnect';
 
 const loadedFiles = loadFilesSync(join(process.cwd(), '**/*.graphqls'));
-
 const typeDefs = mergeTypeDefs(loadedFiles);
+const pubsub = new PubSub();
+
+const getOpenWeatherData = async (cityId: number, units: string) =>
+    await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?id=${cityId.toString()}&mode=json&units=${units}&appid=${
+            process.env.OPENWEATHER_KEY
+        }`
+    ).then((x) => x.json());
+
+const getSensorData = async (ipAddress: string) =>
+    await fetch(`http://${ipAddress}/api`).then((x) => x.json());
+
+const getWidgets = async (roomName: string) => {
+    const { db } = await connectToDatabase();
+    const response = await db
+        .collection('widgets')
+        .find({ room: roomName })
+        .toArray();
+    return response;
+};
 
 const resolvers = {
     Query: {
-        sensor: async (_parent, _args, _context) => {
-            return await fetch('http://192.168.1.185/api').then((x) =>
-                x.json()
-            );
-        },
-        openWeather: async (_parent, _args, _context) => {
-            return await fetch(
-                `http://api.openweathermap.org/data/2.5/weather?q=London&mode=json&units=metric&appid=${process.env.OPENWEATHER_KEY}`
-            ).then((x) => x.json());
-        },
+        // openWeather: async () => await getOpenWeatherData(3068582, 'metric'),
 
-        widget: async () => {
-            const { db } = await connectToDatabase();
-            const response = await db
-                .collection('widgets')
-                .find({ room: 'myRoom' })
-                .toArray();
-            return response;
-        },
+        sensor: async () => await getSensorData('192.168.1.185'),
+
+        widget: async () => await getWidgets('myRoom'),
 
         value: async () => {
             const { db } = await connectToDatabase();
+            const sensorMac = '00:1B:44:11:3A:B7';
             const response = await db
                 .collection('values')
-                .find({ mac: '00:1B:44:11:3A:B7' })
+                .find({ mac: sensorMac })
                 .toArray();
             return response;
         },
