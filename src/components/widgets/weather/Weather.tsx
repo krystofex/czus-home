@@ -7,10 +7,10 @@ const Weather = () => {
     if (error) return 'error';
 
     if (loading) return 'loading';
-    console.log(data.openWeather.main.temp);
+
     return (
         <div className="w-weather content-end">
-            <Heading>weather</Heading>
+            <Heading>{data.openWeather.name}</Heading>
             <div className="grid grid-cols-3 p-1 text-light-text dark:text-dark-text">
                 <img src="" className="h-full" />
                 <div>
@@ -18,7 +18,8 @@ const Weather = () => {
                         {data.openWeather.main.temp} °C
                     </span>
                     <br></br>
-                    feels like: {data.openWeather.main.feels_like}°C<br></br>
+                    feels like: {data.openWeather.main.feels_like}°C
+                    <br></br>
                 </div>
                 <div>
                     min: {data.openWeather.main.temp_min} °C<br></br> max:{' '}

@@ -1,6 +1,6 @@
 type OpenWeather {
     main: OpenWeatherMain
-    weather: OpenWeatherWeather
+    weather: [OpenWeatherWeather]
     wind: OpenWeatherWind
     sys: OpenWeatherSys
     clouds: OpenWeatherClouds
