@@ -2,8 +2,10 @@ import { Heading } from '../WidgetController';
 import { useSensorDataQuery } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
+import { FC } from 'React';
 
-const Sensor = ({ name }) => {
+type widgetProps = { name: string };
+const Sensor: FC<widgetProps> = ({ name }) => {
     const { data, loading, error } = useSensorDataQuery();
 
     if (error) {
@@ -18,7 +20,6 @@ const Sensor = ({ name }) => {
             </div>
         );
     }
-
     if (loading) {
         return (
             <ContentLoader

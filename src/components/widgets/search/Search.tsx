@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { FC } from 'React';
 
-const Search = ({ name }) => {
+type widgetProps = { name: string };
+const Search: FC<widgetProps> = ({ name }) => {
     var url;
     switch (name) {
         case 'google':
