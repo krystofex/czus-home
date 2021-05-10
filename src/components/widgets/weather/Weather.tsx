@@ -1,12 +1,27 @@
 import { Heading } from '../WidgetController';
 import { useOpenWeatherQuery } from '../../../graphql/openWeather.graphql';
+import { toast } from 'react-toastify';
 
 const Weather = () => {
     const { data, loading, error } = useOpenWeatherQuery();
 
-    if (error) return 'error';
+    if (error) {
+        toast.error("couldn't connect to open weather api");
+        return 'error';
+    }
 
     if (loading) return 'loading';
+
+    if (data.openWeather.cod != 200) {
+        toast.error(data.openWeather.message);
+        return (
+            <div>
+                <h4 className="text-dogeBlood text-2xl text-center pt-2 ">
+                    {data.openWeather.message}
+                </h4>
+            </div>
+        );
+    }
 
     return (
         <div className="w-weather content-end">

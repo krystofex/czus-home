@@ -1,11 +1,14 @@
 import { Heading } from '../WidgetController';
 import { useSensorDataQuery } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
+import { toast } from 'react-toastify';
 
 const Sensor = ({ name }) => {
     const { data, loading, error } = useSensorDataQuery();
 
-    if (error)
+    if (error) {
+        toast.error("couldn't connect to sensor");
+
         return (
             <div>
                 <Heading>{name}</Heading>{' '}
@@ -14,8 +17,9 @@ const Sensor = ({ name }) => {
                 </h4>
             </div>
         );
+    }
 
-    if (loading)
+    if (loading) {
         return (
             <ContentLoader
                 className="w-full"
@@ -28,7 +32,7 @@ const Sensor = ({ name }) => {
                 <rect x="0" y="36" rx="5" ry="5" width="102" height="10" />
             </ContentLoader>
         );
-
+    }
     var widgetValue;
     switch (name) {
         case 'temperature':
@@ -44,7 +48,6 @@ const Sensor = ({ name }) => {
     return (
         <div>
             <Heading>{name}</Heading>
-
             <h4 className="text-nextBlue text-2xl text-center pt-2 ">
                 {widgetValue.toFixed(2)}
             </h4>

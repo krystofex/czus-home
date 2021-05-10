@@ -6,15 +6,15 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useWidgetQuery } from '../src/graphql/hello.graphql';
 import ErrorPage from '../src/components/errorPage';
 import LoadingPage from '../src/components/loadingPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
+
     if (error) return <ErrorPage />;
-
     if (loading) return <LoadingPage />;
-
-    console.log(data[0]);
 
     return (
         <>
@@ -22,6 +22,9 @@ const Home = () => {
                 <title>{'myRoom'}</title>
                 <link rel="icon" href="icons/favicon.ico" />
             </Head>
+
+            <ToastContainer />
+
             <div>
                 <ResponsiveGridLayout
                     className="layout"
@@ -36,7 +39,7 @@ const Home = () => {
                     rowHeight={20}
                 >
                     <div
-                        className="animate-pulseOnce hover:scale-75 rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                        className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
                         key="b"
                         data-grid={{
                             x: 3,
