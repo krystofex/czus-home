@@ -1,4 +1,3 @@
-import 'tailwindcss/tailwind.css';
 import React from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
