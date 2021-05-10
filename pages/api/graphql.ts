@@ -31,7 +31,7 @@ const getWidgets = async (roomName: string) => {
 
 const resolvers = {
     Query: {
-        // openWeather: async () => await getOpenWeatherData(3068582, 'metric'),
+        openWeather: async () => await getOpenWeatherData(3068582, 'metric'),
 
         sensor: async () => await getSensorData('192.168.1.185'),
 

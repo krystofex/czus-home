@@ -6,6 +6,8 @@ type OpenWeather {
     clouds: OpenWeatherClouds
     visibility: Float
     name: String
+    message: String
+    cod: Int!
 }
 
 type OpenWeatherMain {

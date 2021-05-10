@@ -47,7 +47,7 @@ const Home = () => {
                             isDraggable: true,
                         }}
                     >
-                        {/* <Widget widgetName="weather" name="" />*/}
+                        <Widget widgetName="weather" name="" />
                     </div>
                     <div
                         className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"

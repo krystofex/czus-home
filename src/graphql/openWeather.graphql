@@ -27,5 +27,7 @@ query OpenWeather {
         }
         visibility
         name
+        message
+        cod
     }
 }
