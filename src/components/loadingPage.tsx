@@ -1,50 +1,63 @@
-import useDarkMode from '../hooks/useDarkMode';
-import ContentLoader from 'react-content-loader';
-import GridLayout, { Responsive, WidthProvider } from 'react-grid-layout';
-
 const LoadingPage = () => {
-    const ResponsiveGridLayout = WidthProvider(Responsive);
-    useDarkMode();
-
     return (
-        <ResponsiveGridLayout
-            className="layout"
-            breakpoints={{
-                lg: 1200,
-                md: 996,
-                sm: 768,
-                xs: 480,
-                xxs: 0,
-            }}
-            cols={{ lg: 12, md: 12, sm: 12, xs: 12, xxs: 12 }}
-            rowHeight={20}
-        >
-            <div
-                className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key="a"
-                data-grid={{ x: 0, y: 0, w: 2, h: 2, static: true }}
-            ></div>
-            <div
-                className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key="b"
-                data-grid={{ x: 0, y: 2, w: 2, h: 6, static: true }}
-            ></div>
-            <div
-                className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key="c"
-                data-grid={{ x: 2, y: 0, w: 6, h: 8, static: true }}
-            ></div>
-            <div
-                className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key="d"
-                data-grid={{ x: 0, y: 8, w: 4, h: 4, static: true }}
-            ></div>
-            <div
-                className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key="e"
-                data-grid={{ x: 4, y: 8, w: 3, h: 4, static: true }}
-            ></div>
-        </ResponsiveGridLayout>
+        <>
+            <style jsx>{`
+                .body {
+                    margin: 0px;
+                    background: radial-gradient(#cecece, #fff);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    overflow: hidden;
+                }
+
+                .container {
+                    width: 600px;
+                    height: 600px;
+                    border-radius: 100%;
+                    background: linear-gradient(
+                        165deg,
+                        rgba(255, 255, 255, 1) 0%,
+                        rgb(220, 220, 220) 40%,
+                        rgb(170, 170, 170) 98%,
+                        rgb(10, 10, 10) 100%
+                    );
+                    position: relative;
+                }
+                .loader {
+                }
+
+                .loader:before {
+                    position: absolute;
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                    border-bottom: 0 solid #ffffff05;
+
+                    box-shadow: 0 -10px 20px 20px #ffffff40 inset,
+                        0 -5px 15px 10px #ffffff50 inset,
+                        0 -2px 5px #ffffff80 inset, 0 -3px 2px #ffffffbb inset,
+                        0 2px 0px #ffffff, 0 2px 3px #ffffff,
+                        0 5px 5px #ffffff90, 0 10px 15px #ffffff60,
+                        0 10px 20px 20px #ffffff40;
+                    filter: blur(3px);
+                    animation: 2s rotate linear infinite;
+                }
+
+                @keyframes rotate {
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            `}</style>
+            <div className="body">
+                <div className="container">
+                    <div className="loader"></div>
+                </div>
+            </div>
+        </>
     );
 };
 
