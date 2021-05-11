@@ -1,21 +1,8 @@
-import Moment from 'react-moment';
-import useDarkMode from '../../../hooks/useDarkMode';
+import Navbar from './Navbar';
+import Panel from './Panel';
 
 const ControlPanel = () => {
-    const [theme, setTheme] = useDarkMode();
-
-    return (
-        <div className="text-light-text dark:text-dark-text">
-            <Moment format="hh:mm:ss" interval={10} className="floatLeft" />
-            <button
-                //@ts-ignore
-
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            >
-                {theme === 'dark' ? 'light' : 'dark'}
-            </button>
-        </div>
-    );
+    return <Panel />;
 };
 
 export default ControlPanel;
