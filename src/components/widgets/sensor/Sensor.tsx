@@ -2,7 +2,7 @@ import { Heading } from '../WidgetController';
 import { useSensorDataQuery } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
-import { FC } from 'React';
+import { FC } from 'react';
 
 type widgetProps = { name: string };
 const Sensor: FC<widgetProps> = ({ name }) => {
@@ -34,7 +34,7 @@ const Sensor: FC<widgetProps> = ({ name }) => {
             </ContentLoader>
         );
     }
-    var widgetValue;
+    let widgetValue;
     switch (name) {
         case 'temperature':
             widgetValue = data.sensor.temperature;

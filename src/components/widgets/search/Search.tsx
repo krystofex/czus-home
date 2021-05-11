@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FC } from 'React';
+import { FC } from 'react';
 
 type widgetProps = { name: string };
 const Search: FC<widgetProps> = ({ name }) => {

@@ -1,10 +1,8 @@
 import { Heading } from '../WidgetController';
 import { useOpenWeatherQuery } from '../../../graphql/openWeather.graphql';
 import { toast } from 'react-toastify';
-import { FC } from 'React';
 
-type widgetProps = { name: string };
-const Weather: FC<widgetProps> = ({ name }) => {
+const Weather = ({ name }) => {
     if (name === 'OpenWeather') {
         const { data, loading, error } = useOpenWeatherQuery();
 
