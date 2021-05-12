@@ -2,7 +2,7 @@ import Weather from './weather/Weather';
 import ControlPanel from './control-panel/ControlPanel';
 import Sensor from './sensor/Sensor';
 import Search from './search/Search';
-import { FC } from 'React';
+import { FC } from 'react';
 
 type widgetControllerProps = { widgetName: string; name: string };
 const Widget: FC<widgetControllerProps> = ({ widgetName, name }) => {

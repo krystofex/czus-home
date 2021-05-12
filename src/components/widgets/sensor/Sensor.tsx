@@ -3,6 +3,7 @@ import { useSensorDataQuery } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
 import { FC } from 'react';
+import CountUp from 'react-countup';
 
 type widgetProps = { name: string };
 const Sensor: FC<widgetProps> = ({ name }) => {
@@ -50,7 +51,13 @@ const Sensor: FC<widgetProps> = ({ name }) => {
         <div>
             <Heading>{name}</Heading>
             <h4 className="text-nextBlue text-2xl text-center pt-2 ">
-                {widgetValue.toFixed(2)}
+                <CountUp
+                    start={0}
+                    end={widgetValue}
+                    duration={0.4}
+                    separator=" "
+                    decimals={2}
+                />{' '}
             </h4>
         </div>
     );

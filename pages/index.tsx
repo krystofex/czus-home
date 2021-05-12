@@ -15,6 +15,25 @@ const Home = () => {
     if (error) return <ErrorPage />;
     if (loading) return <LoadingPage />;
 
+    let gridItems = data.widget.map((widget) => {
+        return (
+            <div
+                className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
+                key={widget._id}
+                data-grid={{
+                    x: widget.position[0],
+                    y: widget.position[1],
+                    w: widget.position[2],
+                    h: widget.position[3],
+                    isResizable: true,
+                    isDraggable: true,
+                }}
+            >
+                <Widget widgetName={widget.widgetName} name={widget.name} />
+            </div>
+        );
+    });
+
     return (
         <>
             <Head>
@@ -37,65 +56,7 @@ const Home = () => {
                     cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
                     rowHeight={20}
                 >
-                    <div
-                        className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                        key="b"
-                        data-grid={{
-                            x: 3,
-                            y: 3,
-                            w: 4,
-                            h: 5,
-                            isResizable: true,
-                            isDraggable: true,
-                        }}
-                    >
-                        <Widget widgetName="weather" name="OpenWeather" />
-                    </div>
-                    <div
-                        className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                        key="c"
-                        data-grid={{
-                            x: 1,
-                            y: 3,
-                            w: 2,
-                            h: 5,
-                            minW: 2,
-                            maxW: 2,
-                            isResizable: true,
-                            isDraggable: true,
-                        }}
-                    >
-                        <Widget widgetName="sensor" name="temperature" />
-                    </div>
-                    <div
-                        className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                        key="d"
-                        data-grid={{
-                            x: 10,
-                            y: 0,
-                            w: 2,
-                            h: 2,
-                            isResizable: true,
-                            isDraggable: true,
-                        }}
-                    >
-                        <Widget widgetName="controlPanel" name="" />
-                    </div>
-
-                    <div
-                        className="animate-pulseOnce rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                        key="e"
-                        data-grid={{
-                            x: 1,
-                            y: 0,
-                            w: 8,
-                            h: 2,
-                            isResizable: true,
-                            isDraggable: true,
-                        }}
-                    >
-                        <Widget widgetName="search" name="google" />
-                    </div>
+                    {gridItems}
                 </ResponsiveGridLayout>
             </div>
         </>
