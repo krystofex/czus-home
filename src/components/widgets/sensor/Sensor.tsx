@@ -1,8 +1,8 @@
+import { FC } from 'react';
 import { Heading } from '../WidgetController';
 import { useSensorDataQuery } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
-import { FC } from 'react';
 import CountUp from 'react-countup';
 
 type widgetProps = { name: string };

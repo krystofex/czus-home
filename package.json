@@ -28,10 +28,10 @@
         "react-chartjs-2": "^3.0.3",
         "react-content-loader": "^6.0.3",
         "react-countup": "^4.3.3",
-        "react-dialog": "^1.0.2",
         "react-dom": "17.0.1",
         "react-grid-layout": "^1.2.4",
         "react-icons": "^4.2.0",
+        "react-modal": "^3.13.1",
         "react-moment": "^1.1.1",
         "react-toastify": "^7.0.4"
     },
