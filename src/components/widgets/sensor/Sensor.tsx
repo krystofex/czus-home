@@ -1,13 +1,18 @@
 import { FC } from 'react';
 import { Heading } from '../WidgetController';
-import { useSensorDataQuery } from '../../../graphql/hello.graphql';
+import {
+    useSensorDataQuery,
+    useValueQuery,
+} from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
 import CountUp from 'react-countup';
+import { Line } from 'react-chartjs-2';
 
 type widgetProps = { name: string };
 const Sensor: FC<widgetProps> = ({ name }) => {
     const { data, loading, error } = useSensorDataQuery();
+    const valueData = useValueQuery();
 
     if (error) {
         toast.error("couldn't connect to sensor");
@@ -21,6 +26,7 @@ const Sensor: FC<widgetProps> = ({ name }) => {
             </div>
         );
     }
+
     if (loading) {
         return (
             <ContentLoader
@@ -35,6 +41,7 @@ const Sensor: FC<widgetProps> = ({ name }) => {
             </ContentLoader>
         );
     }
+
     let widgetValue;
     switch (name) {
         case 'temperature':
@@ -47,6 +54,57 @@ const Sensor: FC<widgetProps> = ({ name }) => {
             widgetValue = data.sensor.humidity;
             break;
     }
+
+    let temperatureData = valueData.data.value.map((x) => {
+        return x.values.temp;
+    });
+    let pressureData = valueData.data.value.map((x) => {
+        return x.values.pressure;
+    });
+    let humidityData = valueData.data.value.map((x) => {
+        return x.values.humidity;
+    });
+    let timeData = valueData.data.value.map((x) => {
+        return x.time;
+    });
+
+    const chartData = {
+        labels: timeData,
+        datasets: [
+            {
+                label: 'Temperature',
+                data: temperatureData,
+                fill: true,
+                borderColor: '#4ECDC4',
+                backgroundColor: 'rgba(78,205,196,0.2)',
+                hidden: name !== 'temperature',
+            },
+            {
+                label: 'Pressure',
+                data: pressureData,
+                fill: true,
+                borderColor: '#D90368',
+                backgroundColor: 'rgba(217,3,104,0.2)',
+                hidden: name !== 'pressure',
+            },
+            {
+                label: 'Humidity',
+                data: humidityData,
+                fill: true,
+                borderColor: '#F75C03',
+                backgroundColor: 'rgba(247,92,3,0.2)',
+                hidden: name !== 'humidity',
+            },
+        ],
+    };
+
+    return (
+        <div>
+            <Heading>{name}</Heading>
+            <Line data={chartData} />
+        </div>
+    );
+
     return (
         <div>
             <Heading>{name}</Heading>
