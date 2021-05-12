@@ -8,6 +8,8 @@ import LoadingPage from '../src/components/loadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Sensor from '../src/components/widgets/sensor/Sensor';
+
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
@@ -29,7 +31,16 @@ const Home = () => {
                     isDraggable: true,
                 }}
             >
-                <Widget widgetName={widget.widgetName} name={widget.name} />
+                <Widget
+                    widgetName={widget.widgetName}
+                    name={widget.name}
+                    size={[
+                        widget.position[0],
+                        widget.position[1],
+                        widget.position[2],
+                        widget.position[3],
+                    ]}
+                />
             </div>
         );
     });

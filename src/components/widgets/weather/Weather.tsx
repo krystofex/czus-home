@@ -1,17 +1,19 @@
 import { Heading } from '../WidgetController';
 import { useOpenWeatherQuery } from '../../../graphql/openWeather.graphql';
 import { toast } from 'react-toastify';
+import { FC } from 'react';
 
-const Weather = ({ name }) => {
+type widgetProps = { name: string; size: [number, number, number, number] };
+const Weather: FC<widgetProps> = ({ name, size }) => {
     if (name === 'OpenWeather') {
         const { data, loading, error } = useOpenWeatherQuery();
 
         if (error) {
             toast.error("couldn't connect to open weather api");
-            return 'error';
+            return <div>error</div>;
         }
 
-        if (loading) return 'loading';
+        if (loading) return <div>loading</div>;
 
         if (data.openWeather.cod != 200) {
             toast.error(data.openWeather.message);

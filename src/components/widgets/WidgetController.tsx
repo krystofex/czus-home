@@ -4,17 +4,21 @@ import Sensor from './sensor/Sensor';
 import Search from './search/Search';
 import { FC } from 'react';
 
-type widgetControllerProps = { widgetName: string; name: string };
-const Widget: FC<widgetControllerProps> = ({ widgetName, name }) => {
+type widgetControllerProps = {
+    widgetName: string;
+    name: string;
+    size: [number, number, number, number];
+};
+const Widget: FC<widgetControllerProps> = ({ widgetName, name, size }) => {
     switch (widgetName) {
         case 'controlPanel':
             return <ControlPanel />;
         case 'weather':
-            return <Weather name={name} />;
+            return <Weather name={name} size={size} />;
         case 'search':
             return <Search name={name} />;
         case 'sensor':
-            return <Sensor name={name} />;
+            return <Sensor name={name} size={size} />;
     }
 };
 

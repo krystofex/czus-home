@@ -13,8 +13,8 @@ const LoadingPage = () => {
                 }
 
                 .container {
-                    width: 600px;
-                    height: 600px;
+                    width: 200px;
+                    height: 200px;
                     border-radius: 100%;
                     background: linear-gradient(
                         165deg,
