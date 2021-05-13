@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { FC } from 'react';
+import { BiSearchAlt2 } from 'react-icons/bi';
 
 type widgetProps = { name: string };
 const Search: FC<widgetProps> = ({ name }) => {
@@ -25,15 +26,9 @@ const Search: FC<widgetProps> = ({ name }) => {
                 />
                 <button
                     type="submit"
-                    className="outline-none border-none inline-block text-normal"
+                    className="outline-none border-none inline-block text-light-text dark:text-dark-text"
                 >
-                    <Image
-                        src="/icons/search.svg"
-                        alt="delete widget"
-                        width={25}
-                        height={25}
-                        className="p-2 sticky "
-                    />
+                    <BiSearchAlt2 size={24} />
                 </button>
             </form>
         </div>

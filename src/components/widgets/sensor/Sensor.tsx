@@ -7,10 +7,11 @@ import {
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
 import CountUp from 'react-countup';
-import { Line } from 'react-chartjs-2';
+import Chart from 'react-chartjs-2';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
 const Sensor: FC<widgetProps> = ({ name, size }) => {
+    const chartType = 'line';
     if (size[2] > 3 && size[3] > 4) {
         const { data, loading, error } = useValueQuery();
 
@@ -67,6 +68,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                     borderColor: '#4ECDC4',
                     backgroundColor: 'rgba(78,205,196,0.2)',
                     hidden: name !== 'temperature',
+                    tension: 0.2,
                 },
                 {
                     label: 'Pressure',
@@ -75,6 +77,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                     borderColor: '#D90368',
                     backgroundColor: 'rgba(217,3,104,0.2)',
                     hidden: name !== 'pressure',
+                    tension: 0.2,
                 },
                 {
                     label: 'Humidity',
@@ -83,16 +86,33 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                     borderColor: '#F75C03',
                     backgroundColor: 'rgba(247,92,3,0.2)',
                     hidden: name !== 'humidity',
+                    tension: 0.2,
                 },
             ],
         };
 
+        const chartOptions = {
+            animation: {
+                duration: 2000,
+                easing: 'easeInCubic',
+            },
+        };
         return (
-            <div>
+            <>
                 <Heading>{name}</Heading>
-                {/* @ts-ignore */}
-                <Line data={chartData} />
-            </div>
+                <div
+                    style={{
+                        height: '400px',
+                        width: '100%',
+                    }}
+                >
+                    <Chart
+                        type={chartType}
+                        data={chartData}
+                        options={chartOptions}
+                    />
+                </div>
+            </>
         );
     } else {
         const { data, loading, error } = useSensorDataQuery();
