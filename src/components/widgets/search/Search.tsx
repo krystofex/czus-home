@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { FC } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 
@@ -26,7 +25,7 @@ const Search: FC<widgetProps> = ({ name }) => {
                 />
                 <button
                     type="submit"
-                    className="outline-none border-none inline-block text-light-text dark:text-dark-text"
+                    className="focus:outline-none inline-block text-light-text dark:text-dark-text"
                 >
                     <BiSearchAlt2 size={24} />
                 </button>

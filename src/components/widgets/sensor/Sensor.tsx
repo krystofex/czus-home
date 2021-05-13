@@ -93,7 +93,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
 
         const chartOptions = {
             animation: {
-                duration: 2000,
+                duration: 1500,
                 easing: 'easeInCubic',
             },
         };
