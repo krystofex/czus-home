@@ -1,14 +1,17 @@
 import Moment from 'react-moment';
 import useDarkMode from '../../../hooks/useDarkMode';
+import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import Draggable from 'react-draggable';
+
+// icons
 import { MdSettings } from 'react-icons/md';
 import { HiSun } from 'react-icons/hi';
 import { IoMdMoon } from 'react-icons/io';
 import { FaUserCircle } from 'react-icons/fa';
 import { RiCloseCircleFill } from 'react-icons/ri';
-import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
-import DayPicker from 'react-day-picker';
-import 'react-day-picker/lib/style.css';
 
 // import Navbar from './Navbar';
 // import Panel from './Panel';
@@ -29,7 +32,7 @@ const ControlPanel = () => {
 
     return (
         <>
-            <div className="text-light-text dark:text-dark-text p-1">
+            <div className="text-gray-900 dark:text-dark-text p-1">
                 <Popover as="div" className="float-left px-1">
                     <Popover.Button className="focus:outline-none">
                         <Moment format="hh:mm:ss" interval={10} />
@@ -98,7 +101,7 @@ const ControlPanel = () => {
                         className="fixed inset-0 z-10 overflow-y-auto"
                         onClose={closeModal}
                     >
-                        <div className="min-h-screen px-4 text-center">
+                        <div className="min-h-screen px-4 text-center ">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -135,9 +138,20 @@ const ControlPanel = () => {
                                         Settings
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <p className="text-sm text-gray-500">
-                                            here will be settings
-                                        </p>
+                                        <div className="text-sm text-gray-500 flex">
+                                            <div className="border-r-2 pr-4">
+                                                <ul>
+                                                    <li>Grid</li>
+                                                    <li>User</li>
+                                                    <li>Weather</li>
+                                                </ul>
+                                            </div>
+                                            <div className="pl-4">
+                                                <ul>
+                                                    <li></li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div className="mt-4">

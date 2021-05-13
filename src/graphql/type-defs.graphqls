@@ -5,6 +5,11 @@ type Query {
     openWeather: OpenWeather
 }
 
+type Subscription {
+    sensor: Sensor
+    openWeather: OpenWeather
+}
+
 type Sensor {
     macAddress: String!
     temperature: Float!

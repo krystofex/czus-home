@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import { Heading } from '../WidgetController';
 import {
-    useSensorDataQuery,
+    useSensorDataSubSubscription,
     useValueQuery,
 } from '../../../graphql/hello.graphql';
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
-import CountUp from 'react-countup';
 import Chart from 'react-chartjs-2';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
@@ -115,7 +114,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             </>
         );
     } else {
-        const { data, loading, error } = useSensorDataQuery();
+        const { data, loading, error } = useSensorDataSubSubscription();
 
         if (error) {
             toast.error("couldn't connect to sensor");
@@ -162,13 +161,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             <div>
                 <Heading>{name}</Heading>
                 <h4 className="text-nextBlue text-2xl text-center pt-2 ">
-                    <CountUp
-                        start={0}
-                        end={widgetValue}
-                        duration={0.4}
-                        separator=" "
-                        decimals={2}
-                    />
+                    {widgetValue.toFixed(2)}
                 </h4>
             </div>
         );

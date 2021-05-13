@@ -7,6 +7,15 @@ query SensorData {
     }
 }
 
+subscription SensorDataSub {
+    sensor {
+        macAddress
+        temperature
+        pressure
+        humidity
+    }
+}
+
 query Widget {
     widget {
         _id

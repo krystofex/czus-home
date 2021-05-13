@@ -29,6 +29,24 @@ const getWidgets = async (roomName: string) => {
     return response;
 };
 
+setInterval(
+    async () =>
+        pubsub.publish(
+            'getSensorDataSub',
+            await getSensorData('192.168.1.185')
+        ),
+    1000
+);
+
+setInterval(
+    async () =>
+        pubsub.publish(
+            'getOpenWeatherSub',
+            await getOpenWeatherData(3068582, 'metric')
+        ),
+    100000
+);
+
 const resolvers = {
     Query: {
         openWeather: async () => await getOpenWeatherData(3068582, 'metric'),
@@ -45,6 +63,16 @@ const resolvers = {
                 .find({ mac: sensorMac })
                 .toArray();
             return response;
+        },
+    },
+    Subscription: {
+        sensor: {
+            subscribe: async () => pubsub.asyncIterator('getSensorDataSub'),
+            resolve: (data) => data,
+        },
+        openWeather: {
+            subscribe: async () => pubsub.asyncIterator('getOpenWeatherSub'),
+            resolve: (data) => data,
         },
     },
 };
