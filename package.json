@@ -12,6 +12,7 @@
     "dependencies": {
         "@apollo/client": "^3.3.14",
         "@graphql-tools/load-files": "^6.3.2",
+        "@headlessui/react": "^1.2.0",
         "@react-icons/all-files": "^4.1.0",
         "apollo-link-ws": "^1.0.20",
         "apollo-server-micro": "^2.21.0",
