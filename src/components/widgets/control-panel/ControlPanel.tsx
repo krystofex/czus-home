@@ -86,17 +86,12 @@ const ControlPanel = () => {
 
                 <button
                     type="button"
-                    onClick={openModal}
+                    onClick={() => {
+                        if (!draggable) openModal();
+                    }}
                     className="float-right px-1 focus:outline-none"
                 >
                     <MdSettings size={24} />
-                </button>
-                <button
-                    type="button"
-                    onClick={() => setDraggable(!draggable)}
-                    className="float-right px-1 focus:outline-none"
-                >
-                    🚗
                 </button>
 
                 <Transition appear show={isOpen} as={Fragment}>
@@ -142,19 +137,16 @@ const ControlPanel = () => {
                                         Settings
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <div className="text-sm text-gray-500 flex">
-                                            <div className="border-r-2 pr-4">
-                                                <ul>
-                                                    <li>Grid</li>
-                                                    <li>User</li>
-                                                    <li>Weather</li>
-                                                </ul>
-                                            </div>
-                                            <div className="pl-4">
-                                                <ul>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
+                                        <div className="text-sm text-gray-700 flex">
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setDraggable(true)
+                                                }
+                                                className="px-1 focus:outline-none"
+                                            >
+                                                edit mode
+                                            </button>
                                         </div>
                                     </div>
 
