@@ -44,7 +44,7 @@ setInterval(
             'getOpenWeatherSub',
             await getOpenWeatherData(3068582, 'metric')
         ),
-    100000
+    5000
 );
 
 const resolvers = {

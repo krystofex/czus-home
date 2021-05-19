@@ -5,6 +5,8 @@ import { Fragment, useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Draggable from 'react-draggable';
+import { DraggableContext } from '../../../hooks/DraggableContext';
+import { useContext, createContext } from 'react';
 
 // icons
 import { MdSettings } from 'react-icons/md';
@@ -21,6 +23,7 @@ const ControlPanel = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
     const [value, onChange] = useState(new Date());
+    const { draggable, setDraggable } = useContext(DraggableContext);
 
     function closeModal() {
         setIsOpen(false);
@@ -70,17 +73,11 @@ const ControlPanel = () => {
                         <Menu.Items className="absolute right-0 w-56 mt-4 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div className="px-1 py-1 ">
                                 <Menu.Item>
-                                    {({ active }) => (
-                                        <button
-                                            className={`${
-                                                active
-                                                    ? 'bg-violet-500 text-white'
-                                                    : 'text-gray-900'
-                                            } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                        >
-                                            Log out
-                                        </button>
-                                    )}
+                                    <button
+                                        className={`text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                                    >
+                                        Log out
+                                    </button>
                                 </Menu.Item>
                             </div>
                         </Menu.Items>
@@ -89,7 +86,9 @@ const ControlPanel = () => {
 
                 <button
                     type="button"
-                    onClick={openModal}
+                    onClick={() => {
+                        if (!draggable) openModal();
+                    }}
                     className="float-right px-1 focus:outline-none"
                 >
                     <MdSettings size={24} />
@@ -138,19 +137,16 @@ const ControlPanel = () => {
                                         Settings
                                     </Dialog.Title>
                                     <div className="mt-2">
-                                        <div className="text-sm text-gray-500 flex">
-                                            <div className="border-r-2 pr-4">
-                                                <ul>
-                                                    <li>Grid</li>
-                                                    <li>User</li>
-                                                    <li>Weather</li>
-                                                </ul>
-                                            </div>
-                                            <div className="pl-4">
-                                                <ul>
-                                                    <li></li>
-                                                </ul>
-                                            </div>
+                                        <div className="text-sm text-gray-700 flex">
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    setDraggable(true)
+                                                }
+                                                className="px-1 focus:outline-none"
+                                            >
+                                                edit mode
+                                            </button>
                                         </div>
                                     </div>
 

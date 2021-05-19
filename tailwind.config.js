@@ -42,6 +42,7 @@ module.exports = {
 
             animation: {
                 shake: 'shake 0.5s linear infinite',
+                spinSlow: 'spin 20s linear infinite',
                 pulseOnce: 'pulse 0.5s linear',
             },
             keyframes: {
