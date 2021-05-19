@@ -147,13 +147,13 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
         let widgetValue;
         switch (name) {
             case 'temperature':
-                widgetValue = data.sensor.temperature;
+                widgetValue = data.sensor.temperature.toFixed(2) + '°C';
                 break;
             case 'pressure':
-                widgetValue = data.sensor.pressure;
+                widgetValue = data.sensor.pressure.toFixed(2) + 'hPa';
                 break;
             case 'humidity':
-                widgetValue = data.sensor.humidity;
+                widgetValue = data.sensor.humidity.toFixed(2) + '%';
                 break;
         }
 
@@ -161,7 +161,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             <div>
                 <Heading>{name}</Heading>
                 <h4 className="text-nextBlue text-2xl text-center pt-2 ">
-                    {widgetValue.toFixed(2)}
+                    {widgetValue}
                 </h4>
             </div>
         );

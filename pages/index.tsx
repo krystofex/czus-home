@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext, createContext } from 'react';
 import Head from 'next/head';
 import Widget from '../src/components/widgets/WidgetController';
 import { Responsive, WidthProvider } from 'react-grid-layout';
@@ -7,12 +7,12 @@ import ErrorPage from '../src/components/errorPage';
 import LoadingPage from '../src/components/loadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import Sensor from '../src/components/widgets/sensor/Sensor';
+import { DraggableContext } from '../src/hooks/DraggableContext';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
+    const { draggable } = useContext(DraggableContext);
 
     if (error) return <ErrorPage />;
     if (loading) return <LoadingPage />;
@@ -28,7 +28,7 @@ const Home = () => {
                     w: widget.position[2],
                     h: widget.position[3],
                     isResizable: true,
-                    isDraggable: true,
+                    isDraggable: draggable,
                 }}
             >
                 <Widget
@@ -44,7 +44,6 @@ const Home = () => {
             </div>
         );
     });
-
     return (
         <>
             <Head>
@@ -54,22 +53,20 @@ const Home = () => {
 
             <ToastContainer />
 
-            <div>
-                <ResponsiveGridLayout
-                    className="layout"
-                    breakpoints={{
-                        lg: 1200,
-                        md: 996,
-                        sm: 768,
-                        xs: 480,
-                        xxs: 0,
-                    }}
-                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-                    rowHeight={20}
-                >
-                    {gridItems}
-                </ResponsiveGridLayout>
-            </div>
+            <ResponsiveGridLayout
+                className="layout"
+                breakpoints={{
+                    lg: 1200,
+                    md: 996,
+                    sm: 768,
+                    xs: 480,
+                    xxs: 0,
+                }}
+                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                rowHeight={20}
+            >
+                {gridItems}
+            </ResponsiveGridLayout>
         </>
     );
 };

@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/widgets/TailwindPosition.tsx"
-  ],
+, "src/hooks/DraggableContext.js"  ],
   "exclude": [
     "node_modules"
   ]
