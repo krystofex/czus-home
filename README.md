@@ -14,3 +14,9 @@ yarn install
 yarn build
 yarn start
 ```
+
+## about:
+Czus home is my school and also free time project. It is web app, which helps you control and monitor your smart home. It ain't much, but it's honest work.
+
+## screenshot from app:
+<img src="./public/screenshot.png">
