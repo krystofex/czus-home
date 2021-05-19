@@ -2,7 +2,8 @@
 
 ## compatible sensors:
 
-[esp8266 sensor module](https://github.com/krystofex/czus-home-esp8266)
+[esp8266 + BME280 / BMP280](https://github.com/krystofex/czus-home-esp8266)\
+[esp32cam](https://github.com/krystofex/esp32cam-mjpeg-stream)
 
 ## installation:
 
