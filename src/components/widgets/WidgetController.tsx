@@ -9,7 +9,11 @@ type widgetControllerProps = {
     name: string;
     size: [number, number, number, number];
 };
-const Widget: FC<widgetControllerProps> = ({ widgetName, name, size }) => {
+export const Widget: FC<widgetControllerProps> = ({
+    widgetName,
+    name,
+    size,
+}) => {
     switch (widgetName) {
         case 'controlPanel':
             return <ControlPanel />;
@@ -22,6 +26,11 @@ const Widget: FC<widgetControllerProps> = ({ widgetName, name, size }) => {
     }
 };
 
+export const WidgetSettings = ({ widgetName, name }) => {
+    console.log('widgetSettings');
+    return;
+};
+
 export const Heading = (props) => {
     return (
         <h3 className="pl-4 text-xl text-light-text dark:text-dark-text">
@@ -29,5 +38,3 @@ export const Heading = (props) => {
         </h3>
     );
 };
-
-export default Widget;
