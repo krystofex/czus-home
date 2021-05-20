@@ -16,6 +16,7 @@ import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
 import { RiCloseCircleFill } from 'react-icons/ri';
 import { MdSettings, MdSave } from 'react-icons/md';
 import { BiPlusCircle } from 'react-icons/bi';
+import { AiOutlineEdit } from 'react-icons/ai';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -65,15 +66,10 @@ const Home = () => {
                         leaveTo="transform opacity-0 scale-95"
                     >
                         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div className="px-1 py-1 ">
-                                <Menu.Item>
-                                    <button
-                                        className={`group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                    >
-                                        Edit
-                                    </button>
-                                </Menu.Item>
-                            </div>
+                            <WidgetSettings
+                                widgetName={widget.widgetName}
+                                name={widget.name}
+                            />
                             <div className="px-1 py-1">
                                 <Menu.Item>
                                     <button
@@ -88,7 +84,7 @@ const Home = () => {
                                             size={24}
                                             className="text-dogeBlood mr-2"
                                         />
-                                        Delete{' '}
+                                        Delete widget
                                     </button>
                                 </Menu.Item>
                             </div>
@@ -151,17 +147,7 @@ const Home = () => {
                     onClick={() => setDraggable(false)}
                     className={`${
                         draggable ? 'visible' : 'invisible'
-                    } inline-flex justify-center px-4 py-2 my-2 text-sm font-medium text-white bg-dogeBlood rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-                >
-                    <RiCloseCircleFill size={20} className="mr-2" />
-                    exit edit mode
-                </button>
-                <br />
-                <button
-                    onClick={() => setDraggable(false)}
-                    className={`${
-                        draggable ? 'visible' : 'invisible'
-                    }  inline-flex justify-center px-4 py-2  text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                     <BiPlusCircle size={20} className="mr-2" />
                     add widget

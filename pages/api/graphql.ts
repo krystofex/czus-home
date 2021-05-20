@@ -35,7 +35,7 @@ setInterval(
             'getSensorDataSub',
             await getSensorData('192.168.1.185')
         ),
-    1000
+    10000
 );
 
 setInterval(
@@ -44,7 +44,7 @@ setInterval(
             'getOpenWeatherSub',
             await getOpenWeatherData(3068582, 'metric')
         ),
-    5000
+    10000
 );
 
 const resolvers = {

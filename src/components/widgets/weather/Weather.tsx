@@ -13,7 +13,12 @@ const Weather: FC<widgetProps> = ({ name, size }) => {
             return <div>error</div>;
         }
 
-        if (loading) return <div>loading</div>;
+        if (loading)
+            return (
+                <div className="text-light-text dark:text-dark-text p-4">
+                    loading
+                </div>
+            );
 
         if (data.openWeather.cod != 200) {
             toast.error(data.openWeather.message);

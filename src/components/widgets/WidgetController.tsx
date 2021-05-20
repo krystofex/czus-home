@@ -1,8 +1,12 @@
+import { FC } from 'react';
 import Weather from './weather/Weather';
 import ControlPanel from './control-panel/ControlPanel';
 import Sensor from './sensor/Sensor';
 import Search from './search/Search';
-import { FC } from 'react';
+
+import SearchSettings from './search/SearchSettings';
+import SensorSettings from './sensor/SensorSettings';
+import WeatherSettings from './weather/WeatherSettings';
 
 type widgetControllerProps = {
     widgetName: string;
@@ -26,9 +30,22 @@ export const Widget: FC<widgetControllerProps> = ({
     }
 };
 
-export const WidgetSettings = ({ widgetName, name }) => {
-    console.log('widgetSettings');
-    return;
+type widgetSettingsProps = {
+    widgetName: string;
+    name: string;
+};
+export const WidgetSettings: FC<widgetSettingsProps> = ({
+    widgetName,
+    name,
+}) => {
+    switch (widgetName) {
+        case 'weather':
+            return <WeatherSettings name={name} />;
+        case 'search':
+            return <SearchSettings name={name} />;
+        case 'sensor':
+            return <SensorSettings name={name} />;
+    }
 };
 
 export const Heading = (props) => {
