@@ -6,6 +6,7 @@ export const DraggableProvider = ({ children }) => {
     const [draggable, setDraggable] = useState(false);
 
     return (
+        // @ts-ignore
         <DraggableContext.Provider value={{ draggable, setDraggable }}>
             {children}
         </DraggableContext.Provider>

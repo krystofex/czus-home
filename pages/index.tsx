@@ -21,6 +21,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
+    // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
 
     if (error) return <ErrorPage />;
