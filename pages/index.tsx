@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, createContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Head from 'next/head';
 import {
     Widget,
@@ -11,8 +11,10 @@ import LoadingPage from '../src/components/loadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
-import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react';
+import Navbar from '../src/components/widgets/control-panel/Navbar';
 
+// icons
 import { RiCloseCircleFill } from 'react-icons/ri';
 import { MdSettings } from 'react-icons/md';
 import { BiPlusCircle } from 'react-icons/bi';
@@ -24,19 +26,36 @@ const Home = () => {
     // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
 
+    const controlType = 'navbar';
+    let margin;
+    switch (controlType) {
+        case 'navbar':
+            margin = 'mt-12';
+            break;
+        case 'sidebar':
+            margin = 'ml-24';
+            break;
+        case 'controlPanel':
+            margin = '';
+            break;
+    }
+
     if (error) return <ErrorPage />;
     if (loading) return <LoadingPage />;
 
-    let gridItems = data.widget.map((widget) => {
-        return (
+    let gridItems = data.widget.map(({ _id, widgetName, position, name }) => {
+        return controlType !== 'controlPanel' &&
+            widgetName === 'controlPanel' ? (
+            <div key={_id}></div>
+        ) : (
             <div
                 className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key={widget._id}
+                key={_id}
                 data-grid={{
-                    x: widget.position[0],
-                    y: widget.position[1],
-                    w: widget.position[2],
-                    h: widget.position[3],
+                    x: position[0],
+                    y: position[1],
+                    w: position[2],
+                    h: position[3],
                     isResizable: true,
                     isDraggable: draggable,
                 }}
@@ -44,7 +63,7 @@ const Home = () => {
                 <Menu
                     as="div"
                     className={`${
-                        draggable && widget.widgetName != 'controlPanel'
+                        draggable && widgetName != 'controlPanel'
                             ? 'visible'
                             : 'invisible'
                     } absolute -top-1 -right-1 inline-block`}
@@ -68,15 +87,15 @@ const Home = () => {
                     >
                         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <WidgetSettings
-                                widgetName={widget.widgetName}
-                                name={widget.name}
+                                widgetName={widgetName}
+                                name={name}
                             />
                             <div className="px-1 py-1">
                                 <Menu.Item>
                                     <button
                                         onClick={() => {
                                             console.log(
-                                                'delete widget: ' + widget._id
+                                                'delete widget: ' + _id
                                             );
                                         }}
                                         className={` group flex rounded-md items-center w-full px-2 py-2 text-sm`}
@@ -93,14 +112,9 @@ const Home = () => {
                     </Transition>
                 </Menu>
                 <Widget
-                    widgetName={widget.widgetName}
-                    name={widget.name}
-                    size={[
-                        widget.position[0],
-                        widget.position[1],
-                        widget.position[2],
-                        widget.position[3],
-                    ]}
+                    widgetName={widgetName}
+                    name={name}
+                    size={[position[0], position[1], position[2], position[3]]}
                 />
             </div>
         );
@@ -114,45 +128,49 @@ const Home = () => {
 
             <ToastContainer />
 
-            <ResponsiveGridLayout
-                className="layout"
-                breakpoints={{
-                    lg: 1200,
-                    md: 996,
-                    sm: 768,
-                    xs: 480,
-                    xxs: 0,
-                }}
-                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-                rowHeight={20}
-            >
-                {gridItems}
-            </ResponsiveGridLayout>
+            <div className="overflow-x-hidden">
+                <ResponsiveGridLayout
+                    className={`${margin} layout`}
+                    breakpoints={{
+                        lg: 1200,
+                        md: 996,
+                        sm: 768,
+                        xs: 480,
+                        xxs: 0,
+                    }}
+                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                    rowHeight={20}
+                >
+                    {gridItems}
+                </ResponsiveGridLayout>
 
-            <div
-                className={`${
-                    draggable ? 'visible' : 'invisible'
-                } absolute top-5 left-5`}
-            >
-                <button
-                    onClick={() => setDraggable(false)}
+                <Navbar />
+
+                <div
                     className={`${
                         draggable ? 'visible' : 'invisible'
-                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    } absolute top-5 left-5`}
                 >
-                    <AiFillCheckCircle size={20} className="mr-2" />
-                    save
-                </button>
-                <br />
-                <button
-                    onClick={() => setDraggable(false)}
-                    className={`${
-                        draggable ? 'visible' : 'invisible'
-                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-                >
-                    <BiPlusCircle size={20} className="mr-2" />
-                    add widget
-                </button>
+                    <button
+                        onClick={() => setDraggable(false)}
+                        className={`${
+                            draggable ? 'visible' : 'invisible'
+                        }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    >
+                        <AiFillCheckCircle size={20} className="mr-2" />
+                        save
+                    </button>
+                    <br />
+                    <button
+                        onClick={() => setDraggable(false)}
+                        className={`${
+                            draggable ? 'visible' : 'invisible'
+                        }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    >
+                        <BiPlusCircle size={20} className="mr-2" />
+                        add widget
+                    </button>
+                </div>
             </div>
         </>
     );
