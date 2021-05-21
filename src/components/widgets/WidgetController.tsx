@@ -48,10 +48,10 @@ export const WidgetSettings: FC<widgetSettingsProps> = ({
     }
 };
 
-export const Heading = (props) => {
+export const Heading = ({ children }) => {
     return (
         <h3 className="pl-4 text-xl text-light-text dark:text-dark-text">
-            {props.children}
+            {children}
         </h3>
     );
 };

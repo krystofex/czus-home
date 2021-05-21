@@ -160,8 +160,8 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
         return (
             <>
                 <div className="flex h-full ">
-                    <h3 className="absolute top-0 left-4 text-xl text-light-text dark:text-dark-text">
-                        {name}
+                    <h3 className="absolute top-2 left-0">
+                        <Heading>{name}</Heading>
                     </h3>
                     <h4 className="text-nextBlue text-2xl w-full text-center mt-auto mb-auto">
                         {widgetValue}

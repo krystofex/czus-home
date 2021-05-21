@@ -25,6 +25,8 @@ const Home = () => {
     const { data, loading, error } = useWidgetQuery();
     // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
+    if (error) return <ErrorPage />;
+    if (loading) return <LoadingPage />;
 
     const controlType = 'navbar';
     let margin;
@@ -39,9 +41,6 @@ const Home = () => {
             margin = '';
             break;
     }
-
-    if (error) return <ErrorPage />;
-    if (loading) return <LoadingPage />;
 
     let gridItems = data.widget.map(({ _id, widgetName, position, name }) => {
         return controlType !== 'controlPanel' &&
@@ -119,6 +118,9 @@ const Home = () => {
             </div>
         );
     });
+
+    const navbar = controlType === 'navbar' ? <Navbar /> : <div></div>;
+
     return (
         <>
             <Head>
@@ -128,49 +130,47 @@ const Home = () => {
 
             <ToastContainer />
 
-            <div className="overflow-x-hidden">
-                <ResponsiveGridLayout
-                    className={`${margin} layout`}
-                    breakpoints={{
-                        lg: 1200,
-                        md: 996,
-                        sm: 768,
-                        xs: 480,
-                        xxs: 0,
-                    }}
-                    cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
-                    rowHeight={20}
-                >
-                    {gridItems}
-                </ResponsiveGridLayout>
+            <ResponsiveGridLayout
+                className={`${margin} layout`}
+                breakpoints={{
+                    lg: 1200,
+                    md: 996,
+                    sm: 768,
+                    xs: 480,
+                    xxs: 0,
+                }}
+                cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
+                rowHeight={20}
+            >
+                {gridItems}
+            </ResponsiveGridLayout>
 
-                <Navbar />
+            {navbar}
 
-                <div
+            <div
+                className={`${
+                    draggable ? 'visible' : 'invisible'
+                } absolute top-5 left-5`}
+            >
+                <button
+                    onClick={() => setDraggable(false)}
                     className={`${
                         draggable ? 'visible' : 'invisible'
-                    } absolute top-5 left-5`}
+                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
-                    <button
-                        onClick={() => setDraggable(false)}
-                        className={`${
-                            draggable ? 'visible' : 'invisible'
-                        }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-                    >
-                        <AiFillCheckCircle size={20} className="mr-2" />
-                        save
-                    </button>
-                    <br />
-                    <button
-                        onClick={() => setDraggable(false)}
-                        className={`${
-                            draggable ? 'visible' : 'invisible'
-                        }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-                    >
-                        <BiPlusCircle size={20} className="mr-2" />
-                        add widget
-                    </button>
-                </div>
+                    <AiFillCheckCircle size={20} className="mr-2" />
+                    save
+                </button>
+                <br />
+                <button
+                    onClick={() => setDraggable(false)}
+                    className={`${
+                        draggable ? 'visible' : 'invisible'
+                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                >
+                    <BiPlusCircle size={20} className="mr-2" />
+                    add widget
+                </button>
             </div>
         </>
     );

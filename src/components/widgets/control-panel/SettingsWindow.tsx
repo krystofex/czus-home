@@ -13,7 +13,7 @@ const SettingsWindow = ({ state }) => {
         <Transition appear show={state.isOpen} as={Fragment}>
             <Dialog
                 as="div"
-                className="fixed inset-0 z-10 overflow-y-auto"
+                className="fixed inset-0 overflow-y-auto"
                 onClose={() => state.setIsOpen(false)}
             >
                 <div className="min-h-screen px-4 text-center ">
@@ -56,7 +56,10 @@ const SettingsWindow = ({ state }) => {
                                 <div className="text-sm text-gray-700 flex">
                                     <button
                                         type="button"
-                                        onClick={() => setDraggable(true)}
+                                        onClick={() => {
+                                            state.setIsOpen(false);
+                                            setDraggable(true);
+                                        }}
                                         className="px-1 focus:outline-none"
                                     >
                                         edit mode
