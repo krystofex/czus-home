@@ -74,15 +74,15 @@ const SettingsWindow = ({ state }) => {
                                 <div className="flex justify-between">
                                     <div className="w-3/12">
                                         navbar
-                                        <img src="navbar.svg" />
+                                        <img src="controlPanelStyles/navbar.svg" />
                                     </div>
                                     <div className="w-3/12">
                                         widget
-                                        <img src="controlPanel.svg" />
+                                        <img src="controlPanelStyles/controlPanel.svg" />
                                     </div>
                                     <div className="w-3/12">
                                         sidebar
-                                        <img src="sidebar.svg" />
+                                        <img src="controlPanelStyles/sidebar.svg" />
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Weather from './weather/Weather';
-import ControlPanel from './control-panel/ControlPanel';
+import ControlPanel from './controlPanel/ControlPanel';
 import Sensor from './sensor/Sensor';
 import Search from './search/Search';
 

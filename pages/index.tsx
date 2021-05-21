@@ -15,7 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
 import { Menu, Transition } from '@headlessui/react';
-import Navbar from '../src/components/widgets/control-panel/Navbar';
+import Navbar from '../src/components/widgets/controlPanel/Navbar';
 
 // icons
 import { RiCloseCircleFill } from 'react-icons/ri';
