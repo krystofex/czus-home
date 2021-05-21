@@ -38,3 +38,9 @@ query Value {
         }
     }
 }
+
+query Configuration{
+    configuration {
+        control
+    }
+}

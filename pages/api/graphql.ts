@@ -29,6 +29,12 @@ const getWidgets = async (roomName: string) => {
     return response;
 };
 
+const getConfiguration = async () => {
+    const { db } = await connectToDatabase();
+    const response = await db.collection('configuration').toArray();
+    return response;
+};
+
 setInterval(
     async () =>
         pubsub.publish(
@@ -54,6 +60,16 @@ const resolvers = {
         sensor: async () => await getSensorData('192.168.1.185'),
 
         widget: async () => await getWidgets('myRoom'),
+
+        configuration: async () => {
+            const { db } = await connectToDatabase();
+            const response = await db
+                .collection('configuration')
+                .find({ id: 0 })
+                .toArray();
+            console.log(response);
+            return response;
+        },
 
         value: async () => {
             const { db } = await connectToDatabase();

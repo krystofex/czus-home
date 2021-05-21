@@ -6,8 +6,8 @@ import {
 } from '../src/components/widgets/WidgetController';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { useWidgetQuery } from '../src/graphql/hello.graphql';
-import ErrorPage from '../src/components/errorPage';
-import LoadingPage from '../src/components/loadingPage';
+import ErrorPage from '../src/components/ErrorPage';
+import LoadingPage from '../src/components/LoadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
@@ -69,10 +69,12 @@ const Home = () => {
                 >
                     <div>
                         <Menu.Button className="inline-flex justify-center w-full text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                            <MdSettings
-                                size={24}
-                                className="text-light-text dark:text-dark-text mx-0.5"
-                            />
+                            <div>
+                                <MdSettings
+                                    size={24}
+                                    className="text-light-text dark:text-dark-text mx-0.5"
+                                />
+                            </div>
                         </Menu.Button>
                     </div>
                     <Transition
