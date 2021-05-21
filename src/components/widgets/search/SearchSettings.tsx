@@ -22,7 +22,7 @@ const SearchSettings: FC<widgetProps> = ({ name }) => {
                     >
                         <BsArrowLeftShort size={20} />
                     </button>
-                    <button className={`group text-center rounded-md w-full`}>
+                    <button className={`text-center rounded-md w-full`}>
                         {names[currentName]}
                     </button>
                     <button

@@ -23,6 +23,7 @@ const ControlPanel = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
     const [value, onChange] = useState(new Date());
+    // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
 
     function closeModal() {

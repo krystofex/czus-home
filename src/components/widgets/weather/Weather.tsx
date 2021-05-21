@@ -2,6 +2,7 @@ import { Heading } from '../WidgetController';
 import { useOpenWeatherSubSubscription } from '../../../graphql/openWeather.graphql';
 import { toast } from 'react-toastify';
 import { FC } from 'react';
+import ContentLoader from 'react-content-loader';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
 const Weather: FC<widgetProps> = ({ name, size }) => {
@@ -15,9 +16,16 @@ const Weather: FC<widgetProps> = ({ name, size }) => {
 
         if (loading)
             return (
-                <div className="text-light-text dark:text-dark-text p-4">
-                    loading
-                </div>
+                <ContentLoader
+                    className="w-full"
+                    speed={1}
+                    backgroundColor="rgba(0, 0, 0, 0.1)"
+                    foregroundColor="rgba(0, 0, 0, 0.18)"
+                >
+                    <rect x="0" y="8" rx="5" ry="5" width="88" height="10" />
+                    <rect x="0" y="22" rx="5" ry="5" width="95" height="10" />
+                    <rect x="0" y="36" rx="5" ry="5" width="102" height="10" />
+                </ContentLoader>
             );
 
         if (data.openWeather.cod != 200) {

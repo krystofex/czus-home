@@ -14,9 +14,9 @@ import { DraggableContext } from '../src/hooks/DraggableContext';
 import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
 
 import { RiCloseCircleFill } from 'react-icons/ri';
-import { MdSettings, MdSave } from 'react-icons/md';
+import { MdSettings } from 'react-icons/md';
 import { BiPlusCircle } from 'react-icons/bi';
-import { AiOutlineEdit } from 'react-icons/ai';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -140,7 +140,7 @@ const Home = () => {
                         draggable ? 'visible' : 'invisible'
                     }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
-                    <MdSave size={20} className="mr-2" />
+                    <AiFillCheckCircle size={20} className="mr-2" />
                     save
                 </button>
                 <br />

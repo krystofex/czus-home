@@ -158,12 +158,16 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
         }
 
         return (
-            <div>
-                <Heading>{name}</Heading>
-                <h4 className="text-nextBlue text-2xl text-center pt-2 ">
-                    {widgetValue}
-                </h4>
-            </div>
+            <>
+                <div className="flex h-full ">
+                    <h3 className="absolute top-0 left-4 text-xl text-light-text dark:text-dark-text">
+                        {name}
+                    </h3>
+                    <h4 className="text-nextBlue text-2xl w-full text-center mt-auto mb-auto">
+                        {widgetValue}
+                    </h4>
+                </div>
+            </>
         );
     }
 };
