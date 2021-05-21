@@ -29,13 +29,19 @@ const getWidgets = async (roomName: string) => {
     return response;
 };
 
+const getConfiguration = async () => {
+    const { db } = await connectToDatabase();
+    const response = await db.collection('configuration').toArray();
+    return response;
+};
+
 setInterval(
     async () =>
         pubsub.publish(
             'getSensorDataSub',
             await getSensorData('192.168.1.185')
         ),
-    1000
+    10000
 );
 
 setInterval(
@@ -44,7 +50,7 @@ setInterval(
             'getOpenWeatherSub',
             await getOpenWeatherData(3068582, 'metric')
         ),
-    5000
+    10000
 );
 
 const resolvers = {
@@ -54,6 +60,15 @@ const resolvers = {
         sensor: async () => await getSensorData('192.168.1.185'),
 
         widget: async () => await getWidgets('myRoom'),
+
+        configuration: async () => {
+            const { db } = await connectToDatabase();
+            const response = await db
+                .collection('configuration')
+                .find({ id: 0 })
+                .toArray();
+            return response;
+        },
 
         value: async () => {
             const { db } = await connectToDatabase();

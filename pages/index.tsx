@@ -1,40 +1,65 @@
-import React, { Fragment, useContext, createContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Head from 'next/head';
 import {
     Widget,
     WidgetSettings,
 } from '../src/components/widgets/WidgetController';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { useWidgetQuery } from '../src/graphql/hello.graphql';
-import ErrorPage from '../src/components/errorPage';
-import LoadingPage from '../src/components/loadingPage';
+import {
+    useWidgetQuery,
+    useConfigurationQuery,
+} from '../src/graphql/hello.graphql';
+import ErrorPage from '../src/components/ErrorPage';
+import LoadingPage from '../src/components/LoadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
-import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react';
+import Navbar from '../src/components/widgets/control-panel/Navbar';
 
+// icons
 import { RiCloseCircleFill } from 'react-icons/ri';
-import { MdSettings, MdSave } from 'react-icons/md';
+import { MdSettings } from 'react-icons/md';
 import { BiPlusCircle } from 'react-icons/bi';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
+    const configuration = useConfigurationQuery();
+    // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
-
     if (error) return <ErrorPage />;
-    if (loading) return <LoadingPage />;
+    if (loading || configuration.loading) return <LoadingPage />;
 
-    let gridItems = data.widget.map((widget) => {
-        return (
+    let controlType = configuration.data.configuration[0].control;
+    let margin;
+    switch (controlType) {
+        case 'sidebar':
+            margin = 'ml-24';
+            break;
+        case 'controlPanel':
+            margin = '';
+            break;
+        default:
+            controlType = 'navbar';
+            margin = 'mt-12';
+            break;
+    }
+
+    let gridItems = data.widget.map(({ _id, widgetName, position, name }) => {
+        return controlType !== 'controlPanel' &&
+            widgetName === 'controlPanel' ? (
+            <div key={_id}></div>
+        ) : (
             <div
                 className="rounded-widget shadow-custom p-2 bg-light-widget dark:bg-dark-widget"
-                key={widget._id}
+                key={_id}
                 data-grid={{
-                    x: widget.position[0],
-                    y: widget.position[1],
-                    w: widget.position[2],
-                    h: widget.position[3],
+                    x: position[0],
+                    y: position[1],
+                    w: position[2],
+                    h: position[3],
                     isResizable: true,
                     isDraggable: draggable,
                 }}
@@ -42,17 +67,19 @@ const Home = () => {
                 <Menu
                     as="div"
                     className={`${
-                        draggable && widget.widgetName != 'controlPanel'
+                        draggable && widgetName != 'controlPanel'
                             ? 'visible'
                             : 'invisible'
                     } absolute -top-1 -right-1 inline-block`}
                 >
                     <div>
                         <Menu.Button className="inline-flex justify-center w-full text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                            <MdSettings
-                                size={24}
-                                className="text-light-text dark:text-dark-text mx-0.5"
-                            />
+                            <div>
+                                <MdSettings
+                                    size={24}
+                                    className="text-light-text dark:text-dark-text mx-0.5"
+                                />
+                            </div>
                         </Menu.Button>
                     </div>
                     <Transition
@@ -65,21 +92,16 @@ const Home = () => {
                         leaveTo="transform opacity-0 scale-95"
                     >
                         <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div className="px-1 py-1 ">
-                                <Menu.Item>
-                                    <button
-                                        className={`group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                                    >
-                                        Edit
-                                    </button>
-                                </Menu.Item>
-                            </div>
+                            <WidgetSettings
+                                widgetName={widgetName}
+                                name={name}
+                            />
                             <div className="px-1 py-1">
                                 <Menu.Item>
                                     <button
                                         onClick={() => {
                                             console.log(
-                                                'delete widget: ' + widget._id
+                                                'delete widget: ' + _id
                                             );
                                         }}
                                         className={` group flex rounded-md items-center w-full px-2 py-2 text-sm`}
@@ -88,7 +110,7 @@ const Home = () => {
                                             size={24}
                                             className="text-dogeBlood mr-2"
                                         />
-                                        Delete{' '}
+                                        Delete widget
                                     </button>
                                 </Menu.Item>
                             </div>
@@ -96,18 +118,16 @@ const Home = () => {
                     </Transition>
                 </Menu>
                 <Widget
-                    widgetName={widget.widgetName}
-                    name={widget.name}
-                    size={[
-                        widget.position[0],
-                        widget.position[1],
-                        widget.position[2],
-                        widget.position[3],
-                    ]}
+                    widgetName={widgetName}
+                    name={name}
+                    size={[position[0], position[1], position[2], position[3]]}
                 />
             </div>
         );
     });
+
+    const navbar = controlType === 'navbar' ? <Navbar /> : <div></div>;
+
     return (
         <>
             <Head>
@@ -118,7 +138,7 @@ const Home = () => {
             <ToastContainer />
 
             <ResponsiveGridLayout
-                className="layout"
+                className={`${margin} layout`}
                 breakpoints={{
                     lg: 1200,
                     md: 996,
@@ -132,6 +152,8 @@ const Home = () => {
                 {gridItems}
             </ResponsiveGridLayout>
 
+            {navbar}
+
             <div
                 className={`${
                     draggable ? 'visible' : 'invisible'
@@ -143,7 +165,7 @@ const Home = () => {
                         draggable ? 'visible' : 'invisible'
                     }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
-                    <MdSave size={20} className="mr-2" />
+                    <AiFillCheckCircle size={20} className="mr-2" />
                     save
                 </button>
                 <br />
@@ -151,17 +173,7 @@ const Home = () => {
                     onClick={() => setDraggable(false)}
                     className={`${
                         draggable ? 'visible' : 'invisible'
-                    } inline-flex justify-center px-4 py-2 my-2 text-sm font-medium text-white bg-dogeBlood rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-                >
-                    <RiCloseCircleFill size={20} className="mr-2" />
-                    exit edit mode
-                </button>
-                <br />
-                <button
-                    onClick={() => setDraggable(false)}
-                    className={`${
-                        draggable ? 'visible' : 'invisible'
-                    }  inline-flex justify-center px-4 py-2  text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                     <BiPlusCircle size={20} className="mr-2" />
                     add widget

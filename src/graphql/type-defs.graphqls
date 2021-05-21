@@ -2,6 +2,7 @@ type Query {
     sensor: Sensor
     widget: [Widget]
     value: [Value]
+    configuration: [Configuration]
     openWeather: OpenWeather
 }
 
@@ -36,4 +37,8 @@ type SensorValues {
     temp: Float
     humidity: Float
     pressure: Float
+}
+
+type Configuration {
+    control: String
 }
