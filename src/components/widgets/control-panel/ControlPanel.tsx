@@ -1,38 +1,25 @@
 import Moment from 'react-moment';
-import useDarkMode from '../../../hooks/useDarkMode';
-import { Popover, Dialog, Menu, Transition } from '@headlessui/react';
+import { Popover, Menu, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import Draggable from 'react-draggable';
 import { DraggableContext } from '../../../hooks/DraggableContext';
-import { useContext, createContext } from 'react';
+import { useContext } from 'react';
 
 // icons
 import { MdSettings } from 'react-icons/md';
 import { HiSun } from 'react-icons/hi';
 import { IoMdMoon } from 'react-icons/io';
 import { FaUserCircle } from 'react-icons/fa';
-import { RiCloseCircleFill } from 'react-icons/ri';
 
-// import Navbar from './Navbar';
-// import Panel from './Panel';
-// import Settings from '../../settings';
+import useDarkMode from '../../../hooks/useDarkMode';
+import SettingsWindow from './SettingsWindow';
 
 const ControlPanel = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
-    const [value, onChange] = useState(new Date());
     // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
-    function openModal() {
-        setIsOpen(true);
-    }
 
     return (
         <>
@@ -88,83 +75,14 @@ const ControlPanel = () => {
                 <button
                     type="button"
                     onClick={() => {
-                        if (!draggable) openModal();
+                        if (!draggable) setIsOpen(true);
                     }}
                     className="float-right px-1 focus:outline-none"
                 >
                     <MdSettings size={24} />
                 </button>
 
-                <Transition appear show={isOpen} as={Fragment}>
-                    <Dialog
-                        as="div"
-                        className="fixed inset-0 z-10 overflow-y-auto"
-                        onClose={closeModal}
-                    >
-                        <div className="min-h-screen px-4 text-center ">
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <Dialog.Overlay className="fixed inset-0" />
-                            </Transition.Child>
-
-                            {/* This element is to trick the browser into centering the modal contents. */}
-                            <span
-                                className="inline-block h-screen align-middle"
-                                aria-hidden="true"
-                            >
-                                &#8203;
-                            </span>
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                                    <Dialog.Title
-                                        as="h3"
-                                        className="text-lg font-medium leading-6 text-gray-900"
-                                    >
-                                        Settings
-                                    </Dialog.Title>
-                                    <div className="mt-2">
-                                        <div className="text-sm text-gray-700 flex">
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    setDraggable(true)
-                                                }
-                                                className="px-1 focus:outline-none"
-                                            >
-                                                edit mode
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-4">
-                                        <button
-                                            type="button"
-                                            className="absolute top-0 right-0 text-dogeBlood focus:outline-none"
-                                            onClick={closeModal}
-                                        >
-                                            <RiCloseCircleFill size={32} />
-                                        </button>
-                                    </div>
-                                </div>
-                            </Transition.Child>
-                        </div>
-                    </Dialog>
-                </Transition>
+                <SettingsWindow state={{ isOpen, setIsOpen }} />
 
                 <button
                     onClick={() => {
