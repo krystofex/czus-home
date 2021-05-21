@@ -53,6 +53,9 @@ const SettingsWindow = ({ state }) => {
                                 Settings
                             </Dialog.Title>
                             <div className="mt-2">
+                                <div className="mt-5 text-md font-medium leading-6 text-gray-900">
+                                    Widgets:
+                                </div>
                                 <div className="text-sm text-gray-700 flex">
                                     <button
                                         type="button"
@@ -64,6 +67,23 @@ const SettingsWindow = ({ state }) => {
                                     >
                                         edit mode
                                     </button>
+                                </div>
+                                <div className="mt-5 text-md font-medium leading-6 text-gray-900">
+                                    Control panel style:
+                                </div>
+                                <div className="flex justify-between">
+                                    <div className="w-3/12">
+                                        navbar
+                                        <img src="navbar.svg" />
+                                    </div>
+                                    <div className="w-3/12">
+                                        widget
+                                        <img src="controlPanel.svg" />
+                                    </div>
+                                    <div className="w-3/12">
+                                        sidebar
+                                        <img src="sidebar.svg" />
+                                    </div>
                                 </div>
                             </div>
 

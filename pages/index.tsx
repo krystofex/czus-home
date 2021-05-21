@@ -5,7 +5,10 @@ import {
     WidgetSettings,
 } from '../src/components/widgets/WidgetController';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { useWidgetQuery } from '../src/graphql/hello.graphql';
+import {
+    useWidgetQuery,
+    useConfigurationQuery,
+} from '../src/graphql/hello.graphql';
 import ErrorPage from '../src/components/ErrorPage';
 import LoadingPage from '../src/components/LoadingPage';
 import { ToastContainer } from 'react-toastify';
@@ -23,22 +26,24 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
+    const configuration = useConfigurationQuery();
     // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
     if (error) return <ErrorPage />;
-    if (loading) return <LoadingPage />;
+    if (loading || configuration.loading) return <LoadingPage />;
 
-    const controlType = 'navbar';
+    let controlType = configuration.data.configuration[0].control;
     let margin;
     switch (controlType) {
-        case 'navbar':
-            margin = 'mt-12';
-            break;
         case 'sidebar':
             margin = 'ml-24';
             break;
         case 'controlPanel':
             margin = '';
+            break;
+        default:
+            controlType = 'navbar';
+            margin = 'mt-12';
             break;
     }
 

@@ -67,7 +67,6 @@ const resolvers = {
                 .collection('configuration')
                 .find({ id: 0 })
                 .toArray();
-            console.log(response);
             return response;
         },
 
