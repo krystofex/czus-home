@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Heading } from '../WidgetController';
 import {
     useSensorDataSubSubscription,
@@ -42,7 +42,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             );
         }
 
-        let loadedFromDb = {
+        const loadedFromDb = {
             temperature: data.value.map((x) => {
                 return x.values.temp;
             }),

@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 
 type widgetProps = { name: string };
 const Search: FC<widgetProps> = ({ name }) => {
-    var url;
+    let url;
     switch (name) {
         case 'google':
             url = 'https://google.com/search?';

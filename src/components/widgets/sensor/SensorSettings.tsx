@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 
 type widgetProps = { name: string };

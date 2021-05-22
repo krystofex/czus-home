@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { DraggableContext } from '../../../hooks/DraggableContext';
 
@@ -7,7 +7,7 @@ import { RiCloseCircleFill } from 'react-icons/ri';
 
 const SettingsWindow = ({ state }) => {
     // @ts-ignore
-    const { draggable, setDraggable } = useContext(DraggableContext);
+    const { setDraggable } = useContext(DraggableContext);
 
     return (
         <Transition appear show={state.isOpen} as={Fragment}>
@@ -63,7 +63,7 @@ const SettingsWindow = ({ state }) => {
                                             state.setIsOpen(false);
                                             setDraggable(true);
                                         }}
-                                        className="px-1 focus:outline-none"
+                                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                                     >
                                         edit mode
                                     </button>
@@ -72,17 +72,23 @@ const SettingsWindow = ({ state }) => {
                                     Control panel style:
                                 </div>
                                 <div className="flex justify-between">
-                                    <div className="w-3/12">
+                                    <div className="w-1/3">
                                         navbar
-                                        <img src="controlPanelStyles/navbar.svg" />
+                                        <div className="p-2 rounded-md hover:bg-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                                            <img src="controlPanelStyles/navbar.svg" />
+                                        </div>
                                     </div>
-                                    <div className="w-3/12">
+                                    <div className="w-1/3 mx-2">
                                         widget
-                                        <img src="controlPanelStyles/controlPanel.svg" />
-                                    </div>
-                                    <div className="w-3/12">
+                                        <div className="p-2 rounded-md hover:bg-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                                            <img src="controlPanelStyles/controlPanel.svg" />
+                                        </div>
+                                    </div>{' '}
+                                    <div className="w-1/3">
                                         sidebar
-                                        <img src="controlPanelStyles/sidebar.svg" />
+                                        <div className="p-2 rounded-md hover:bg-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500">
+                                            <img src="controlPanelStyles/sidebar.svg" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

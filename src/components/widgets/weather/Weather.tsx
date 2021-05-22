@@ -1,11 +1,11 @@
 import { Heading } from '../WidgetController';
 import { useOpenWeatherSubSubscription } from '../../../graphql/openWeather.graphql';
 import { toast } from 'react-toastify';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import ContentLoader from 'react-content-loader';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
-const Weather: FC<widgetProps> = ({ name, size }) => {
+const Weather: FC<widgetProps> = ({ name }) => {
     if (name === 'OpenWeather') {
         const { data, loading, error } = useOpenWeatherSubSubscription();
 
