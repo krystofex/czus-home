@@ -1,3 +1,4 @@
 **/node_modules/*
 **/out/*
 **/.next/*
+**/graphql/*.ts

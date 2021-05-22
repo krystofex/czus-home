@@ -29,7 +29,6 @@ const SettingsWindow = ({ state }) => {
                         <Dialog.Overlay className="fixed inset-0" />
                     </Transition.Child>
 
-                    {/* This element is to trick the browser into centering the modal contents. */}
                     <span
                         className="inline-block h-screen align-middle"
                         aria-hidden="true"
