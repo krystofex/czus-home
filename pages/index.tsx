@@ -9,8 +9,8 @@ import {
     useWidgetQuery,
     useConfigurationQuery,
 } from '../src/graphql/hello.graphql';
-import ErrorPage from '../src/components/ErrorPage';
-import LoadingPage from '../src/components/LoadingPage';
+import ErrorPage from '../src/components/pages/ErrorPage';
+import LoadingPage from '../src/components/pages/LoadingPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
@@ -27,7 +27,6 @@ const Home = () => {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
     const configuration = useConfigurationQuery();
-    // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
     if (error) return <ErrorPage />;
     if (loading || configuration.loading) return <LoadingPage />;

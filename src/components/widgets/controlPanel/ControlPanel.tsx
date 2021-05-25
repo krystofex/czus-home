@@ -18,7 +18,6 @@ import SettingsWindow from './SettingsWindow';
 const ControlPanel = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
-    // @ts-ignore
     const { draggable, setDraggable } = useContext(DraggableContext);
 
     return (
@@ -84,7 +83,6 @@ const ControlPanel = () => {
 
                 <button
                     onClick={() => {
-                        //@ts-ignore
                         setTheme(theme === 'dark' ? 'light' : 'dark');
                     }}
                     className="float-right px-1 focus:outline-none"

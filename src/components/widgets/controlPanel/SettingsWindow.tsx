@@ -6,7 +6,6 @@ import { DraggableContext } from '../../../hooks/DraggableContext';
 import { RiCloseCircleFill } from 'react-icons/ri';
 
 const SettingsWindow = ({ state }) => {
-    // @ts-ignore
     const { setDraggable } = useContext(DraggableContext);
 
     return (

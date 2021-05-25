@@ -19,11 +19,13 @@ type MyMongoClient = {
     db: Db;
 };
 
-//@ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 let cached = global.mongo;
 
 if (!cached) {
-    //@ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     cached = global.mongo = { conn: null, promise: null };
 }
 

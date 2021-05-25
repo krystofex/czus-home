@@ -19,7 +19,6 @@ import SettingsWindow from './SettingsWindow';
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
-    // @ts-ignore
     const { draggable } = useContext(DraggableContext);
 
     return (
@@ -85,7 +84,6 @@ const Navbar = () => {
 
                     <button
                         onClick={() => {
-                            //@ts-ignore
                             setTheme(theme === 'dark' ? 'light' : 'dark');
                         }}
                         className="float-right px-1 focus:outline-none"
