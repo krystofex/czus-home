@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DraggableContext } from '../src/hooks/DraggableContext';
 import { Menu, Transition } from '@headlessui/react';
 import Navbar from '../src/components/widgets/controlPanel/Navbar';
+import { useTranslation } from 'react-i18next';
 
 // icons
 import { RiCloseCircleFill } from 'react-icons/ri';
@@ -24,10 +25,12 @@ import { BiPlusCircle } from 'react-icons/bi';
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 const Home = () => {
+    const { t } = useTranslation();
     const ResponsiveGridLayout = WidthProvider(Responsive);
     const { data, loading, error } = useWidgetQuery();
     const configuration = useConfigurationQuery();
     const { draggable, setDraggable } = useContext(DraggableContext);
+
     if (error) return <ErrorPage />;
     if (loading || configuration.loading) return <LoadingPage />;
 
@@ -109,7 +112,7 @@ const Home = () => {
                                             size={24}
                                             className="text-dogeBlood mr-2"
                                         />
-                                        Delete widget
+                                        {t('delete widget')}
                                     </button>
                                 </Menu.Item>
                             </div>
@@ -165,7 +168,7 @@ const Home = () => {
                     }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-green-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                     <AiFillCheckCircle size={20} className="mr-2" />
-                    save
+                    {t('save')}
                 </button>
                 <br />
                 <button
@@ -175,7 +178,7 @@ const Home = () => {
                     }  inline-flex justify-center px-4 py-2 mt-2 text-sm font-medium text-white bg-blue-500 rounded-md bg-opacity-90 hover:bg-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                     <BiPlusCircle size={20} className="mr-2" />
-                    add widget
+                    {t('add widget')}
                 </button>
             </div>
         </>

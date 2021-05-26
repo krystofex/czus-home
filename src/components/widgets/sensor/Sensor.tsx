@@ -7,9 +7,12 @@ import {
 import ContentLoader from 'react-content-loader';
 import { toast } from 'react-toastify';
 import Chart from 'react-chartjs-2';
+import { useTranslation } from 'react-i18next';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
 const Sensor: FC<widgetProps> = ({ name, size }) => {
+    const { t } = useTranslation();
+
     const chartType = 'line';
     if (size[2] > 3 && size[3] > 4) {
         const { data, loading, error } = useValueQuery();
@@ -21,7 +24,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                 <div>
                     <Heading>{name}</Heading>{' '}
                     <h4 className="text-dogeBlood text-2xl text-center pt-2 ">
-                        error
+                        {t('error')}
                     </h4>
                 </div>
             );
@@ -61,7 +64,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             labels: loadedFromDb.time,
             datasets: [
                 {
-                    label: 'Temperature',
+                    label: t('temperature'),
                     data: loadedFromDb.temperature,
                     fill: true,
                     borderColor: '#4ECDC4',
@@ -70,7 +73,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                     tension: 0.2,
                 },
                 {
-                    label: 'Pressure',
+                    label: t('pressure'),
                     data: loadedFromDb.pressure,
                     fill: true,
                     borderColor: '#D90368',
@@ -79,7 +82,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                     tension: 0.2,
                 },
                 {
-                    label: 'Humidity',
+                    label: t('humidity'),
                     data: loadedFromDb.humidity,
                     fill: true,
                     borderColor: '#F75C03',
@@ -98,7 +101,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
         };
         return (
             <>
-                <Heading>{name}</Heading>
+                <Heading>{t(name)}</Heading>
                 <div
                     style={{
                         height: '400px',
@@ -117,13 +120,13 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
         const { data, loading, error } = useSensorDataSubSubscription();
 
         if (error) {
-            toast.error("couldn't connect to sensor");
+            toast.error(t("couldn't connect to sensor"));
 
             return (
                 <div>
                     <Heading>{name}</Heading>{' '}
                     <h4 className="text-dogeBlood text-2xl text-center pt-2 ">
-                        error
+                        {t('error')}
                     </h4>
                 </div>
             );
@@ -161,7 +164,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
             <>
                 <div className="flex h-full ">
                     <h3 className="absolute top-2 left-0">
-                        <Heading>{name}</Heading>
+                        <Heading>{t(name)}</Heading>
                     </h3>
                     <h4 className="text-nextBlue text-2xl w-full text-center mt-auto mb-auto">
                         {widgetValue}

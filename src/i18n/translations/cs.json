@@ -1,1 +1,22 @@
-{}
+{
+    "temperature": "teplota",
+    "pressure": "tlak",
+    "humidity": "vlhkost",
+    "weather": "počasí",
+    "feels like": "pocitově",
+    "settings": "nastavemí",
+    "edit mode": "režim úpravy",
+    "widgets": "widgety",
+    "control panel style": "Styl ovládacího panelu",
+    "navbar": "navigační lišta",
+    "widget": "widget",
+    "sidebar": "postranní lišta",
+    "save": "uložit",
+    "add widget": "přidat widget",
+    "sensor": "senzor",
+    "delete widget": "smazat widget",
+    "search engine": "vyhledávač",
+    "weather service": "služba počasí",
+    "error": "chyba",
+    "couldn't connect to sensor": "nepodařilo se připojit k senzoru"
+}

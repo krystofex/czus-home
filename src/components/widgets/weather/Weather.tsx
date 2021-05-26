@@ -3,15 +3,18 @@ import { useOpenWeatherSubSubscription } from '../../../graphql/openWeather.grap
 import { toast } from 'react-toastify';
 import React, { FC } from 'react';
 import ContentLoader from 'react-content-loader';
+import { useTranslation } from 'react-i18next';
 
 type widgetProps = { name: string; size: [number, number, number, number] };
 const Weather: FC<widgetProps> = ({ name }) => {
+    const { t } = useTranslation();
+
     if (name === 'OpenWeather') {
         const { data, loading, error } = useOpenWeatherSubSubscription();
 
         if (error) {
             toast.error("couldn't connect to open weather api");
-            return <div>error</div>;
+            return <div>{t('error')}</div>;
         }
 
         if (loading)
@@ -49,13 +52,14 @@ const Weather: FC<widgetProps> = ({ name }) => {
                             {data.openWeather.main.temp} °C
                         </span>
                         <br></br>
-                        feels like: {data.openWeather.main.feels_like}°C
+                        {t('feels like')}: {data.openWeather.main.feels_like}°C
                         <br></br>
                     </div>
                     <div>
                         min: {data.openWeather.main.temp_min} °C<br></br> max:{' '}
                         {data.openWeather.main.temp_max} °C
-                        <br></br> pressure: {data.openWeather.main.pressure} hPa
+                        <br></br> {t('pressure')}:{' '}
+                        {data.openWeather.main.pressure} hPa
                     </div>
                 </div>
             </div>
