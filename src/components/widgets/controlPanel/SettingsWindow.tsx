@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 // icons
 import { RiCloseCircleFill } from 'react-icons/ri';
 
-const SettingsWindow = ({ state }): JSX.Element => {
+const SettingsWindow = ({ state }: { state: any }): JSX.Element => {
     const { t } = useTranslation();
 
     const { setDraggable } = useContext(DraggableContext);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 
-export default function useDarkMode() {
+const useDarkMode = (): { theme: string; setTheme: () => void } => {
     const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
@@ -23,4 +23,6 @@ export default function useDarkMode() {
     }, [theme]);
 
     return [theme, setTheme];
-}
+};
+
+export default useDarkMode;
