@@ -9,7 +9,8 @@
         "start": "next start",
         "type-check": "tsc --pretty --noEmit",
         "lint": "eslint src",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "type-check": "tsc --pretty --noEmit"
     },
     "dependencies": {
         "@apollo/client": "^3.3.14",

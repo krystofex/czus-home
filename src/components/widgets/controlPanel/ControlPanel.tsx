@@ -1,10 +1,9 @@
 import Moment from 'react-moment';
 import { Popover, Menu, Transition } from '@headlessui/react';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { DraggableContext } from '../../../hooks/DraggableContext';
-import { useContext } from 'react';
 
 // icons
 import { MdSettings } from 'react-icons/md';
@@ -15,10 +14,10 @@ import { FaUserCircle } from 'react-icons/fa';
 import useDarkMode from '../../../hooks/useDarkMode';
 import SettingsWindow from './SettingsWindow';
 
-const ControlPanel = () => {
+const ControlPanel = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
-    const { draggable, setDraggable } = useContext(DraggableContext);
+    const { draggable } = useContext(DraggableContext);
 
     return (
         <>

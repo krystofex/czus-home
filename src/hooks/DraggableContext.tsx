@@ -1,8 +1,12 @@
-import React, { createContext, useState, FC } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const DraggableContext = createContext(null);
 
-export const DraggableProvider = ({ children }) => {
+export const DraggableProvider = ({
+    children,
+}: {
+    children: JSX.Element;
+}): JSX.Element => {
     const [draggable, setDraggable] = useState(false);
 
     return (

@@ -16,7 +16,7 @@ import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 import useDarkMode from '../../../hooks/useDarkMode';
 import SettingsWindow from './SettingsWindow';
 
-const Navbar = () => {
+const Navbar = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useDarkMode();
     const { draggable } = useContext(DraggableContext);

@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 
-type widgetProps = { name: string };
-const SensorSettigs: FC<widgetProps> = ({ name }) => {
+const SensorSettigs: FC<widgetProps> = ({ name }: { name: string }) => {
     const names = ['temperature', 'pressure', 'humidity'];
     const [currentName, setName] = useState(names.indexOf(name));
 

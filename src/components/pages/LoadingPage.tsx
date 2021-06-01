@@ -1,4 +1,6 @@
-const LoadingPage = () => {
+import React from 'react';
+
+const LoadingPage = (): JSX.Element => {
     return (
         <>
             <style jsx>{`

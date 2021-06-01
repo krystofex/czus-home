@@ -1,8 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 
-type widgetProps = { name: string };
-const SearchSettings: FC<widgetProps> = ({ name }) => {
+const SearchSettings = ({ name }: { name: string }): JSX.Element => {
     const names = ['google', 'duckDuckGo', 'seznam'];
     const [currentName, setName] = useState(names.indexOf(name));
 

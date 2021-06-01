@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 
-type widgetProps = { name: string };
-const WeatherSettings: FC<widgetProps> = ({ name }) => {
+const WeatherSettings = ({ name }: { name: string }): JSX.Element => {
     const names = ['openWeather'];
     const [currentName, setName] = useState(0);
+
+    switch (name) {
+        case 'openWeather':
+            break;
+    }
 
     return (
         <>
