@@ -4,7 +4,7 @@ on: push
 
 jobs:
   run-linters:
-    name: Run linters
+    name: Run lint
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,4 @@ jobs:
         run: npm install
 
       - name: run lint
-        run: npm run lint
-
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          eslint: true
-          prettier: true
+        run: yarn lint
