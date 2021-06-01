@@ -167,7 +167,7 @@ const Sensor: FC<widgetProps> = ({ name, size }) => {
                         <Heading>{t(name)}</Heading>
                     </h3>
                     <h4 className="text-nextBlue text-2xl w-full text-center mt-auto mb-auto">
-                        {widgetValue}
+                        {10}
                     </h4>
                 </div>
             </>

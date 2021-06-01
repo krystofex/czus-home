@@ -1,13 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, FC } from 'react';
 
-export const DraggableContext = createContext(false);
+export const DraggableContext = createContext(null);
 
 export const DraggableProvider = ({ children }) => {
     const [draggable, setDraggable] = useState(false);
 
     return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         <DraggableContext.Provider value={{ draggable, setDraggable }}>
             {children}
         </DraggableContext.Provider>
